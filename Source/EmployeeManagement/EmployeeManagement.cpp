@@ -1,9 +1,4 @@
+/* EmployeeManagement.cpp */
 
-#include<iostream>
-
-class EmployeeManagement {
-
-
-};
 
 
