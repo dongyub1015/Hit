@@ -1,8 +1,6 @@
-
+/* Condition.cpp */
 #include<iostream>
 
-class Condition {
 
 
-};
 

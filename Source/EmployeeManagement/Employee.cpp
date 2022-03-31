@@ -1,11 +1,7 @@
-
+/* Employee.cpp */
 
 #include<iostream>
 
-class Employee {
-
-
-};
 
 
 
