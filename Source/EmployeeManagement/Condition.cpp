@@ -1,6 +1,6 @@
 /* Condition.cpp */
-#include<iostream>
+#include "Condition.h"
 
-
-
-
+string Condition::getCompareString() {
+	return compareString_;
+}

@@ -141,6 +141,18 @@
   <ItemGroup>
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Condition.cpp" />
+    <ClCompile Include="ConditionBirthday.cpp" />
+    <ClCompile Include="ConditionCerti.cpp" />
+    <ClCompile Include="ConditionCL.cpp" />
+    <ClCompile Include="ConditionDayBirthday.cpp" />
+    <ClCompile Include="ConditionFirstName.cpp" />
+    <ClCompile Include="ConditionLastName.cpp" />
+    <ClCompile Include="ConditionLastPhoneNumber.cpp" />
+    <ClCompile Include="ConditionMiddlePhoneNumber.cpp" />
+    <ClCompile Include="ConditionMonthBirthday.cpp" />
+    <ClCompile Include="ConditionName.cpp" />
+    <ClCompile Include="ConditionPhoneNumber.cpp" />
+    <ClCompile Include="ConditionYearBirthday.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="EmployeeManagement.cpp" />
     <ClCompile Include="main.cpp" />
@@ -153,6 +165,18 @@
   <ItemGroup>
     <ClInclude Include="Command.h" />
     <ClInclude Include="Condition.h" />
+    <ClInclude Include="ConditionBirthday.h" />
+    <ClInclude Include="ConditionCerti.h" />
+    <ClInclude Include="ConditionCL.h" />
+    <ClInclude Include="ConditionDayBirthday.h" />
+    <ClInclude Include="ConditionFirstName.h" />
+    <ClInclude Include="ConditionLastName.h" />
+    <ClInclude Include="ConditionLastPhoneNumber.h" />
+    <ClInclude Include="ConditionMiddlePhoneNumber.h" />
+    <ClInclude Include="ConditionMonthBirthday.h" />
+    <ClInclude Include="ConditionName.h" />
+    <ClInclude Include="ConditionPhoneNumber.h" />
+    <ClInclude Include="ConditionYearBirthday.h" />
     <ClInclude Include="InputInterpreter.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="EmployeeManagement.h" />
