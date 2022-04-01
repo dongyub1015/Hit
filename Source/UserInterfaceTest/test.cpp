@@ -1,8 +1,8 @@
 #include "pch.h"
 #include <string>
 #include "../EmployeeManagement/InputInterpreter.h"
+#include "../EmployeeManagement/OutputBuilder.h"
 using namespace std;
-
 
 TEST(InputInterpreterTest, ValidFilenameTest) {
 
@@ -82,3 +82,31 @@ TEST(InputInterpreterTest, CheckInputContentsTest) {
 }
 
 
+TEST(OutputBuilderTest, WriteFileTest1) {
+
+    OutputBuilder output("output_20_20_empty.txt");
+    vector<string> vectorStr;
+    EXPECT_EQ(true, output.writeFile(vectorStr));
+}
+
+TEST(OutputBuilderTest, WriteFileTest2) {
+    OutputBuilder output("output_20_20_temp.txt");
+    vector<string> vectorStr;
+
+    vectorStr.push_back("SCH,02117175,SBILHUT LDEXRI,CL4,010-2814-1699,19950704,ADV");
+    EXPECT_EQ(true, output.writeFile(vectorStr));
+}
+
+TEST(OutputBuilderTest, WriteFileTest3) {
+    OutputBuilder output("output_20_20_compare.txt");
+    vector<string> vectorStrWrite;
+
+    vectorStrWrite.push_back("SCH,02117175,SBILHUT LDEXRI,CL4,010-2814-1699,19950704,ADV");
+    vectorStrWrite.push_back("MOD,17112609,FB NTAWR,CL4,010-5645-6122,19861203,PRO");
+    EXPECT_EQ(true, output.writeFile(vectorStrWrite));
+
+    InputInterpreter input("output_20_20_compare.txt");
+    vector<string> vectorStrRead;
+    vectorStrRead = input.readFile();
+    EXPECT_EQ(vectorStrWrite, vectorStrRead);
+}

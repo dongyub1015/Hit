@@ -10,7 +10,6 @@ class InputInterpreter {
 public:
     InputInterpreter(string fileName) : inputFileName_(fileName) {}
     
-    //Todo : main의 파라미터로 넘어온 파일이름에 대한 유효성 검사 필요
     vector<string> readFile() {
         vector<string> inputStrAll;
         ifstream fin(inputFileName_);
