@@ -4,21 +4,17 @@
 using namespace std;
 
 TEST(InputInterpreterTest, ReadFileTest) {
-    InputInterpreter input("input_20_20_temp.txt");
-    EXPECT_TRUE(input.openFile());
-    
-    vector<string> vectorStr;
-    EXPECT_EQ(vectorStr, input.readFile());
-}
-
-TEST(InputManagerTest, CheckInputContentsTest) {
     InputInterpreter input1("input_20_20_temp.txt");
     vector<string> vectorStr;
     vectorStr.push_back("ADD, , , ,15123099,VXIHXOTH JHOP,CL3,010-3112-2609,19771211,ADV");
     EXPECT_EQ(vectorStr, input1.readFile());
     vectorStr.clear();
+}
 
-    InputInterpreter input2("input_20_20.txt");
+TEST(InputManagerTest, CheckInputContentsTest) {
+    InputInterpreter input2("input_20_20.txt"); 
+    vector<string> vectorStr;
+
     vectorStr.push_back("ADD, , , ,15123099,VXIHXOTH JHOP,CL3,010-3112-2609,19771211,ADV");
     vectorStr.push_back("ADD, , , ,17112609,FB NTAWR,CL4,010-5645-6122,19861203,PRO");
     vectorStr.push_back("ADD, , , ,18115040,TTETHU HBO,CL3,010-4581-2050,20080718,ADV");

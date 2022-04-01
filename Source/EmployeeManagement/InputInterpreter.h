@@ -10,12 +10,6 @@ class InputInterpreter {
 public:
     InputInterpreter(string name) : inputName_(name) {}
 
-    bool openFile() {
-        ifstream fin(inputName_); 
-        fin.close();
-        return fin.is_open();
-    }
-
     vector<string> readFile() {
         ifstream fin(inputName_);
         vector<string> inputStrAll;
