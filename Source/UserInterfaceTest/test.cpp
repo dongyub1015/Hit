@@ -3,15 +3,38 @@
 #include "../EmployeeManagement/InputInterpreter.h"
 using namespace std;
 
+
+TEST(InputInterpreterTest, ValidFilenameTest) {
+
+    string ext;
+    InputInterpreter input1("aaa.txt");
+    EXPECT_EQ(true, input1.isValidFileName());
+    InputInterpreter input2("txt");
+    EXPECT_EQ(false, input2.isValidFileName());
+    InputInterpreter input3(".aaa");
+    EXPECT_EQ(false, input3.isValidFileName());
+    InputInterpreter input4("abc..txt");
+    EXPECT_EQ(false, input4.isValidFileName());
+    InputInterpreter input5("/.txt");
+    EXPECT_EQ(false, input5.isValidFileName());
+    InputInterpreter input6("aa/b.txt");
+    EXPECT_EQ(false, input6.isValidFileName());
+    InputInterpreter input7("aa\\b.txt");
+    EXPECT_EQ(false, input7.isValidFileName());
+    InputInterpreter input8("filename,txt");
+    EXPECT_EQ(false, input8.isValidFileName());
+}
 TEST(InputInterpreterTest, ReadFileTest) {
-    InputInterpreter input("input_20_20_temp.txt");
+    InputInterpreter input1("input_20_20_empty.txt");
     vector<string> vectorStr;
+    EXPECT_EQ(vectorStr, input1.readFile());
+
+    InputInterpreter input2("input_20_20_temp.txt");
     vectorStr.push_back("ADD, , , ,15123099,VXIHXOTH JHOP,CL3,010-3112-2609,19771211,ADV");
-    EXPECT_EQ(vectorStr, input.readFile());
-    vectorStr.clear();
+    EXPECT_EQ(vectorStr, input2.readFile());
 }
 
-TEST(InputManagerTest, CheckInputContentsTest) {
+TEST(InputInterpreterTest, CheckInputContentsTest) {
     InputInterpreter input("input_20_20.txt"); 
     vector<string> vectorStr;
 
@@ -55,6 +78,7 @@ TEST(InputManagerTest, CheckInputContentsTest) {
     vectorStr.push_back("SCH, ,-f, ,name,LDEXRI");
     vectorStr.push_back("MOD, , , ,name,VCUHLE HMU,birthday,19910808");
     vectorStr.push_back("SCH, , , ,name,FB NTAWR");
-    vectorStr.push_back("");
     EXPECT_EQ(vectorStr, input.readFile());
 }
+
+
