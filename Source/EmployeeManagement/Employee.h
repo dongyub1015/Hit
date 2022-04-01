@@ -1,4 +1,6 @@
 #pragma once
+#include<iostream>
+using namespace std;
 
 #include <string>
 
@@ -60,11 +62,11 @@ public:
 
 	void setBirthday(string birthday) {
 		birthday_ = birthday;
+
 	}
 
 	void setCerti(string certi) {
 		certi_ = certi;
 	}
 };
-
 
