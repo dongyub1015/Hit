@@ -3,6 +3,27 @@
 #include "../EmployeeManagement/InputInterpreter.h"
 using namespace std;
 
+
+TEST(InputInterpreterTest, ValidFilenameTest) {
+
+    string ext;
+    InputInterpreter input1("aaa.txt");
+    EXPECT_EQ(true, input1.isValidFileName());
+    InputInterpreter input2("txt");
+    EXPECT_EQ(true, input2.isValidFileName());
+    InputInterpreter input3(".aaa");
+    EXPECT_EQ(true, input3.isValidFileName());
+    InputInterpreter input4("abc..txt");
+    EXPECT_EQ(true, input4.isValidFileName());
+    InputInterpreter input5("/.txt");
+    EXPECT_EQ(true, input5.isValidFileName());
+    InputInterpreter input6("aa/b.txt");
+    EXPECT_EQ(true, input6.isValidFileName());
+    InputInterpreter input7("aa\\b.txt");
+    EXPECT_EQ(true, input7.isValidFileName());
+    InputInterpreter input8("filename,txt");
+    EXPECT_EQ(true, input8.isValidFileName());
+}
 TEST(InputInterpreterTest, ReadFileTest) {
     InputInterpreter input1("input_20_20_empty.txt");
     vector<string> vectorStr;
@@ -59,3 +80,5 @@ TEST(InputInterpreterTest, CheckInputContentsTest) {
     vectorStr.push_back("SCH, , , ,name,FB NTAWR");
     EXPECT_EQ(vectorStr, input.readFile());
 }
+
+

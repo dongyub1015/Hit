@@ -29,6 +29,11 @@ public:
         return inputStrAll;
     }
 
+    bool isValidFileName() {
+        
+        return true;
+    }
+
 private:
     string inputFileName_;
 };
