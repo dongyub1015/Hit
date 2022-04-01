@@ -2,23 +2,23 @@
 
 #include<iostream>
 #include<string>
-#include "IEmployee.h"
+#include "../EmployeeManagement/Employee.h"
 
 using namespace std;
 
-class MockEmployee : public IEmployee
+class MockEmployee : public Employee
 {
 public:
-    MOCK_METHOD(string, getEmployeeNum, (), (const, override));
-    MOCK_METHOD(string, getName, (), (const, override));
-    MOCK_METHOD(string, getCL, (), (const, override));
-    MOCK_METHOD(string, getPhoneNum, (), (const, override));
-    MOCK_METHOD(string, getBirthday, (), (const, override));
-    MOCK_METHOD(string, getCerti, (), (const, override));
-    MOCK_METHOD(void, setName, (string name), (override));
-    MOCK_METHOD(void, setCL, (string cl), (override));
-    MOCK_METHOD(void, setPhoneNum, (string phoneNum), (override));
-    MOCK_METHOD(void, setBirthday, (string birthday), (override));
-    MOCK_METHOD(void, setCerti, (string certi), (override));
+    MOCK_METHOD(string, getEmployeeNum, (), ());
+    MOCK_METHOD(string, getName, (), ());
+    MOCK_METHOD(string, getCL, (), ());
+    MOCK_METHOD(string, getPhoneNum, (), ());
+    MOCK_METHOD(string, getBirthday, (), ());
+    MOCK_METHOD(string, getCerti, (), ());
+    MOCK_METHOD(void, setName, (string name), ());
+    MOCK_METHOD(void, setCL, (string cl), ());
+    MOCK_METHOD(void, setPhoneNum, (string phoneNum), ());
+    MOCK_METHOD(void, setBirthday, (string birthday), ());
+    MOCK_METHOD(void, setCerti, (string certi), ());
 };
 
