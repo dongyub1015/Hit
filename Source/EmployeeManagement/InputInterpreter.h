@@ -8,10 +8,10 @@ using namespace std;
 
 class InputInterpreter {
 public:
-    InputInterpreter(string name) : inputName_(name) {}
+    InputInterpreter(string fileName) : inputFileName_(fileName) {}
 
     vector<string> readFile() {
-        ifstream fin(inputName_);
+        ifstream fin(inputFileName_);
         vector<string> inputStrAll;
         string line;
         while (!fin.eof()) {
@@ -23,5 +23,5 @@ public:
     }
 
 private:
-    string inputName_;
+    string inputFileName_;
 };
