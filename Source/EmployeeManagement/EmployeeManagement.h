@@ -34,7 +34,7 @@ public:
 	virtual vector<Employee*>* doSearch(string ref) override {
 		vector<Employee*>* foundList_ = new vector<Employee*>(0);
 		for (auto it : *emList_) {
-			if ((*it).name_ == ref) {
+			if ((*it).getName() == ref) {
 				foundList_->push_back(it);
 			}
 		}

@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{44630693-a600-45d7-a0f3-ff2f37a2fce2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -38,9 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EmployeeTest.cpp" />
-    <ClCompile Include="IEmployee.cpp" />
-    <ClCompile Include="IEmployee.h" />
-    <ClCompile Include="MockEmployee.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
