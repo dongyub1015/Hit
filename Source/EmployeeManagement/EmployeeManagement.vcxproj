@@ -145,6 +145,7 @@
     <ClCompile Include="EmployeeManagement.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="VaildChecker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -155,6 +156,7 @@
     <ClInclude Include="InputInterpreter.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="EmployeeManagement.h" />
+    <ClInclude Include="VaildChecker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
