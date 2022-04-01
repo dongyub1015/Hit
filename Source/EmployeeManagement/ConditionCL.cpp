@@ -1,3 +1,3 @@
 /*ConditionCL.cpp*/
 
-#include "ConditionCL.h"
+#include "Condition.h"

@@ -1,3 +1,3 @@
 /*ConditionLastPhoneNumber.cpp*/
 
-#include "ConditionLastPhoneNumber.h"
+#include "Condition.h"

@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="헤더 파일\Condition">
-      <UniqueIdentifier>{59ae1e8e-2807-4182-9bc3-e2891de6f4b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Condition">
       <UniqueIdentifier>{97ac7315-f2c4-42fe-8c44-f7764f334345}</UniqueIdentifier>
     </Filter>
@@ -78,6 +75,9 @@
     <ClCompile Include="ConditionYearBirthday.cpp">
       <Filter>소스 파일\Condition</Filter>
     </ClCompile>
+    <ClCompile Include="ConditionEmployeeNum.cpp">
+      <Filter>소스 파일\Condition</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -92,50 +92,14 @@
     <ClInclude Include="VaildChecker.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ConditionBirthday.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="ConditionCerti.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="ConditionCL.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="ConditionDayBirthday.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="ConditionFirstName.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="ConditionLastName.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="ConditionLastPhoneNumber.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="ConditionMiddlePhoneNumber.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="ConditionMonthBirthday.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="ConditionName.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="Condition.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
     <ClInclude Include="Employee.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ConditionPhoneNumber.h">
-      <Filter>헤더 파일\Condition</Filter>
-    </ClInclude>
-    <ClInclude Include="ConditionYearBirthday.h">
-      <Filter>헤더 파일\Condition</Filter>
+    <ClInclude Include="Condition.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
