@@ -4,15 +4,15 @@
 using namespace std;
 
 TEST(InputInterpreterTest, ReadFileTest) {
-    InputInterpreter input1("input_20_20_temp.txt");
+    InputInterpreter input("input_20_20_temp.txt");
     vector<string> vectorStr;
     vectorStr.push_back("ADD, , , ,15123099,VXIHXOTH JHOP,CL3,010-3112-2609,19771211,ADV");
-    EXPECT_EQ(vectorStr, input1.readFile());
+    EXPECT_EQ(vectorStr, input.readFile());
     vectorStr.clear();
 }
 
 TEST(InputManagerTest, CheckInputContentsTest) {
-    InputInterpreter input2("input_20_20.txt"); 
+    InputInterpreter input("input_20_20.txt"); 
     vector<string> vectorStr;
 
     vectorStr.push_back("ADD, , , ,15123099,VXIHXOTH JHOP,CL3,010-3112-2609,19771211,ADV");
@@ -56,5 +56,5 @@ TEST(InputManagerTest, CheckInputContentsTest) {
     vectorStr.push_back("MOD, , , ,name,VCUHLE HMU,birthday,19910808");
     vectorStr.push_back("SCH, , , ,name,FB NTAWR");
     vectorStr.push_back("");
-    EXPECT_EQ(vectorStr, input2.readFile());
+    EXPECT_EQ(vectorStr, input.readFile());
 }
