@@ -4,11 +4,10 @@
 using namespace std;
 
 TEST(InputInterpreterTest, ReadFileTest) {
-
     InputInterpreter input1("input_20_20_empty.txt");
     vector<string> vectorStr;
-    // Todo : 빈파일에 대한 예외처리 필요 
     EXPECT_EQ(vectorStr, input1.readFile());
+
     InputInterpreter input2("input_20_20_temp.txt");
     vectorStr.push_back("ADD, , , ,15123099,VXIHXOTH JHOP,CL3,010-3112-2609,19771211,ADV");
     EXPECT_EQ(vectorStr, input2.readFile());
@@ -58,6 +57,5 @@ TEST(InputInterpreterTest, CheckInputContentsTest) {
     vectorStr.push_back("SCH, ,-f, ,name,LDEXRI");
     vectorStr.push_back("MOD, , , ,name,VCUHLE HMU,birthday,19910808");
     vectorStr.push_back("SCH, , , ,name,FB NTAWR");
-    //vectorStr.push_back("");
     EXPECT_EQ(vectorStr, input.readFile());
 }
