@@ -72,12 +72,11 @@ TEST_F(EmployeeManagementTest, ScenarioTest_01) {
 
 	emList = emMgmt->searchEmployee(cnd);
 
-	ASSERT_EQ((*emList)[0]->employeeNum_, "4") << "4th Employee employeeNum";
-	ASSERT_EQ((*emList)[0]->name_, "Name4") << "4th Employee Name";
-	ASSERT_EQ((*emList)[0]->phoneNum_, "01013843534") << "4th Employee Phone Number";
-	ASSERT_EQ((*emList)[0]->birthDay_, "20220531") << "4th Employee Birth";
+	ASSERT_EQ((*emList)[0]->getEmployeeNum(), "4") << "4th Employee employeeNum";
+	ASSERT_EQ((*emList)[0]->getName(), "Name4") << "4th Employee Name";
+	ASSERT_EQ((*emList)[0]->getPhoneNum(), "01013843534") << "4th Employee Phone Number";
+	ASSERT_EQ((*emList)[0]->getBirthday(), "20220531") << "4th Employee Birth";
 }
-
 
 /*
 TITLE : ScenarioTest_02
