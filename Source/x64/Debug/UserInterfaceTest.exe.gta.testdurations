@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GtaTestDurations xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Executable>D:\Git_Repo\Hit\Source\x64\Debug\UserInterfaceTest.exe</Executable>
+  <TestDurations>
+    <TestDuration Test="InputInterpreterTest.ReadFileTest" Duration="1" />
+  </TestDurations>
+</GtaTestDurations>

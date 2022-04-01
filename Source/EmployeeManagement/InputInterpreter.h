@@ -16,10 +16,16 @@ public:
         return fin.is_open();
     }
 
-    string readFile() {
+    vector<string> readFile() {
         ifstream fin(inputName_);
+        vector<string> inputStrAll;
+        string line;
+        while (!fin.eof()) {
+            getline(fin, line);
+            inputStrAll.push_back(line);
+        }
         fin.close();
-        return "aa";
+        return inputStrAll;
     }
 
 private:
