@@ -180,6 +180,7 @@
     <ClInclude Include="InputInterpreter.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="EmployeeManagement.h" />
+    <ClInclude Include="Search.h" />
     <ClInclude Include="VaildChecker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
