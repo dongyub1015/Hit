@@ -137,5 +137,8 @@
     <ClInclude Include="ConditionYearBirthday.h">
       <Filter>헤더 파일\Condition</Filter>
     </ClInclude>
+    <ClInclude Include="Search.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
