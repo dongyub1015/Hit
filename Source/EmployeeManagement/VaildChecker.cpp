@@ -27,29 +27,41 @@ vector<string> VaildChecker::parseString(string source, string delimiter)
 	}
 
 	result.push_back(source.substr(spos));
-
 	return result;
+}
+
+bool VaildChecker::IsNumberString(const string& str)
+{
+	for (const auto& num : str) 
+	{
+		if (!(num >= '0' && num <= '9')) return false;
+	}
+	return true;
+}
+
+bool VaildChecker::IsCapitalString(const string& Str)
+{
+	for (const auto& name : Str)
+	{
+		if (!(name >= 'A' && name <= 'Z')) return false;
+	}
+	return true;
 }
 
 bool VaildChecker::checkEmployeeNum(const string& EmployeeNum)
 {
+	VaildChecker checker;
+
 	if (EmployeeNum.size() != 8) return false;
-
-	for (const auto& num : EmployeeNum)
-	{
-		if (!(num >= '0' && num <= '9')) return false;
-	}
-
-	const int intYear = stoi(EmployeeNum.substr(0, 2));
-	if ((intYear >= 69 && intYear <= 99) || (intYear >= 00 && intYear <= 21)) return true;
-
+	if (!checker.IsNumberString(EmployeeNum)) return false;
+	if (stoi(EmployeeNum.substr(0, 2)) >= 69 && stoi(EmployeeNum.substr(0, 2)) <= 99) return true;
+	if (stoi(EmployeeNum.substr(0, 2)) >= 00 && stoi(EmployeeNum.substr(0, 2)) <= 21) return true;
 	return false;
 }
 
 bool VaildChecker::checkEmployeeName(const string& EmployeeName)
 {
 	int space = 0, loop = 0;
-
 	if (EmployeeName.size() > 15 || EmployeeName.size() < 3) return false;
 
 	for(auto name : EmployeeName)
@@ -60,59 +72,43 @@ bool VaildChecker::checkEmployeeName(const string& EmployeeName)
 
 		if ((space > 1) || ((space == 1) && (loop == 1)) || ((space == 0) && (loop == (EmployeeName.size() - 1)))) return false;
 	}
-
 	return true;
 }
 
 bool VaildChecker::checkCL(const string& ClType)
 {
 	if (ClType == "CL1" || ClType ==  "CL2" || ClType == "CL3" || ClType == "CL4") return true;
-
 	return false;
 }
 
 bool VaildChecker::checkPhoneNum(const string& PhoneNum)
 {
 	VaildChecker checker;
+	vector<string> strList = checker.parseString(PhoneNum, "-");
 
 	if (PhoneNum.size() != 13) return false;
-	vector<string> strList = checker.parseString(PhoneNum, "-");
 	if (strList[0] != "010") return false;
 	if (strList[1].size() != 4 || strList[2].size() != 4) return false;
-
-	for (int i = 0; i < 4; i++)
-	{
-		if (!(strList[1][i] >= '0' && strList[1][i] <= '9' && strList[2][i] >= '0' && strList[2][i] <= '9')) return false;
-	}
-
+	if (!checker.IsNumberString(strList[1])) return false;
+	if (!checker.IsNumberString(strList[2])) return false;
 	return true;
 }
 
 bool VaildChecker::checkBirthday(const string& Birthday)
 {
+	VaildChecker checker;
+
 	if (Birthday.size() != 8) return false;
-
-	for (const auto& num : Birthday)
-	{
-		if (!(num >= '0' && num <= '9')) return false;
-	}
-
-	const int intYear = stoi(Birthday.substr(0, 4));
-	if (!(intYear >= 1900 && intYear <= 2022)) return false;
-
-	const int intMonth = stoi(Birthday.substr(4, 2));
-	if (!(intMonth >= 1 && intMonth <= 12)) return false;
-
-	const int intDay = stoi(Birthday.substr(6, 2)); 	
-	if (!(intDay >= 1 && intDay <= 31)) return false;
-
+	if (!checker.IsNumberString(Birthday)) return false;
+	if (!(stoi(Birthday.substr(0, 4)) >= 1900 && stoi(Birthday.substr(0, 4)) <= 2022)) return false;
+	if (!(stoi(Birthday.substr(4, 2)) >= 1 && stoi(Birthday.substr(4, 2)) <= 12)) return false;
+	if (!(stoi(Birthday.substr(6, 2)) >= 1 && stoi(Birthday.substr(6, 2)) <= 31)) return false;
 	return true;
 }
 
 bool VaildChecker::checkCertiGrade(const string& CertiGrade)
 {
 	if (CertiGrade == "ADV" || CertiGrade ==  "PRO" || CertiGrade == "EX") return true;
-
 	return false;
 }
 
@@ -123,29 +119,66 @@ int VaildChecker::convertColumnStrToInt(const string& column)
 	if (column == PHONENUM) return phoneNum;
 	if (column == BIRTHDAY) return birthday;
 	if (column == CERTI) return certi;
-
 	return -1;
 }
 
 bool VaildChecker::checkOpt1(const string& Opt1)
 {
 	if (Opt1 == "-p" || Opt1 == " ") return true;
-
 	return false;
 }
 
 bool VaildChecker::checkOpt2(const string& Opt2)
 {
 	if (Opt2 == "-f" || Opt2 == "-l" || Opt2 == "-m" || Opt2 == "-y" || Opt2 == "-d" || Opt2 == " ") return true;
-
 	return false;
 }
 
 bool VaildChecker::checkOpt3(const string& Opt3)
 {
 	if (Opt3 == " ") return true;
-
 	return false;
+}
+
+bool VaildChecker::checkOptName(const string& OptName)
+{
+	if (!((OptName.size() >= 1) && (OptName.size() <= 13))) return false;
+	if (!IsCapitalString(OptName)) return false;
+	return true;
+}
+
+bool VaildChecker::checkOptPhoneNum(const string& OptPhoneNum)
+{
+	if (OptPhoneNum.size() != 4) return false;
+	if (!IsNumberString(OptPhoneNum)) return false;
+	return true;
+}
+
+bool VaildChecker::checkOptY_Birthday(const string& OptY_Birthday)
+{
+	if (OptY_Birthday.size() != 4) return false;
+	if (!(stoi(OptY_Birthday) >= 1900 && stoi(OptY_Birthday) <= 2022)) return false;
+	return true;
+}
+
+bool VaildChecker::checkOptM_Birthday(const string& OptM_Birthday)
+{
+	if (OptM_Birthday.size() != 2) return false;
+	if (!(stoi(OptM_Birthday) >= 1 && stoi(OptM_Birthday) <= 12)) return false;
+	return true;
+}
+
+bool VaildChecker::checkOptD_Birthday(const string& OptD_Birthday)
+{
+	if (OptD_Birthday.size() != 2) return false;
+	if (!(stoi(OptD_Birthday) >= 1 && stoi(OptD_Birthday) <= 31)) return false;
+	return true;
+}
+
+bool VaildChecker::checkOptNone(const string& OptNone1, const string& OptNone2)
+{
+	if (!(convertColumnStrToInt(OptNone1) >= employeeNum && convertColumnStrToInt(OptNone1) <= certi)) return false;
+	return funcPtr[convertColumnStrToInt(OptNone1)](OptNone2);
 }
 
 bool VaildChecker::checkSrchCond(const string& InputStr)
@@ -156,87 +189,39 @@ bool VaildChecker::checkSrchCond(const string& InputStr)
 
 	for (auto optFunc : checkOption)
 	{
-		if (optFunc(strList[checkedCnt]) == false)	return false;
+		if (!optFunc(strList[checkedCnt]))	return false;
 		checkedCnt++;
 	}
 
-	if (strList[2] == "-f")  // first name
+	if (strList[2] == "-f")
 	{
 		if (strList[4] != NAME) return false;
-
-		if (!((strList[5].size() >= 1) && (strList[5].size() <= 13))) return false;
-
-		for (auto name : strList[5])
-		{
-			if (!(name >= 'A' && name <= 'Z')) return false;
-		}
+		return checkOptName(strList[5]);
 	}
-	else if (strList[2] == "-l") // last name, phonenum
+	else if (strList[2] == "-l")
 	{
-		if (strList[4] == NAME)
-		{
-			if (!((strList[5].size() >= 1) && (strList[5].size() <= 13))) return false;
-
-			for (auto name : strList[5])
-			{
-				if (!(name >= 'A' && name <= 'Z')) return false;
-			}
-		}
-		else if (strList[4] == PHONENUM)
-		{
-			if (strList[5].size() != 4) return false;
-
-			for (auto num : strList[5])
-			{
-				if (!(num >= '0' && num <= '9')) return false;
-			}
-		}
-		else
-		{
-			return false;
-		}
+		if (strList[4] == NAME) return checkOptName(strList[5]);
+		if (strList[4] == PHONENUM) return checkOptPhoneNum(strList[5]);
+		return false;
 	}
-	else if (strList[2] == "-m") // middle phonenum, month brithday
+	else if (strList[2] == "-m")
 	{
-		if (strList[4] == PHONENUM)
-		{
-			if (strList[5].size() != 4) return false;
-
-			for (auto num : strList[5])
-			{
-				if (!(num >= '0' && num <= '9')) return false;
-			}
-		}
-		else if (strList[4] == BIRTHDAY)
-		{
-			if (strList[5].size() != 2) return false;
-
-			int intMonth = stoi(strList[5]);
-			if (!(intMonth >= 1 && intMonth <= 12)) return false;
-		}
-		else
-		{
-			return false;
-		}
+		if (strList[4] == PHONENUM) return checkOptPhoneNum(strList[5]);
+		else if (strList[4] == BIRTHDAY) return checkOptM_Birthday(strList[5]);
+		return false;
 	}
-	else if (strList[2] == "-y") // year
+	else if (strList[2] == "-y")
 	{
 		if (strList[4] != BIRTHDAY) return false;
-		if (strList[5].size() != 4) return false;
-
-		int intYear = stoi(strList[5]);
-		if (!(intYear >= 1900 && intYear <= 2022)) return false;
+		return checkOptY_Birthday(strList[5]);
 	}
-	else if (strList[2] == "-d") // day
+	else if (strList[2] == "-d")
 	{
 		if (strList[4] != BIRTHDAY) return false;
-		if (strList[5].size() != 2) return false;
-
-		int intDay = stoi(strList[5]);
-		if (!(intDay >= 1 && intDay <= 31)) return false;
+		return checkOptD_Birthday(strList[5]);
 	}
 
-	return true;
+	return checkOptNone(strList[4], strList[5]);
 }
 
 bool AddVaildChecker::checkVaild(const string& InputStr)
@@ -255,7 +240,7 @@ bool AddVaildChecker::checkVaild(const string& InputStr)
 
 	for (const auto& fp : funcPtr)
 	{
-		if (fp(strList[checkedPara++]) == false) return false;
+		if (!fp(strList[checkedPara++])) return false;
 	}
 
 	return true;
@@ -264,30 +249,22 @@ bool AddVaildChecker::checkVaild(const string& InputStr)
 bool DelVaildChecker::checkVaild(const string& InputStr)
 {
 	vector<string> strList = parseString(InputStr, ",");
-
 	if (!((strList.size() == 6) && (strList[0] == "DEL"))) return false;
-
 	return checkSrchCond(InputStr);
 }
 
 bool SchVaildChecker::checkVaild(const string& InputStr)
 {
 	vector<string> strList = parseString(InputStr, ",");
-
 	if (!((strList.size() == 6) && (strList[0] == "SCH"))) return false;
-
 	return checkSrchCond(InputStr);
 }
 
 bool ModVaildChecker::checkVaild(const string& InputStr)
 {
 	vector<string> strList = parseString(InputStr, ",");
-
 	if (!((strList.size() == 8) && (strList[0] == "MOD"))) return false;
-	if (checkSrchCond(InputStr) == false) return false;
-
-	int column = convertColumnStrToInt(strList[6]);
-	if (!(column >= name && column <= certi)) return false;
-
-	return funcPtr[column](strList[7]);
+	if (!checkSrchCond(InputStr)) return false;
+	if (!(convertColumnStrToInt(strList[6]) >= name && convertColumnStrToInt(strList[6]) <= certi)) return false;
+	return funcPtr[convertColumnStrToInt(strList[6])](strList[7]);
 }
