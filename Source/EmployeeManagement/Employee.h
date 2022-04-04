@@ -20,6 +20,10 @@ public:
 	Employee(string employeeNum, string name, string cl, string phoneNum, string birthday, string certi)
 		: employeeNum_(employeeNum), name_(name), cl_(cl), phoneNum_(phoneNum), birthday_(birthday), certi_(certi) {}
 
+	string toString() {
+		return employeeNum_ + "," + name_ + "," + cl_ + "," + phoneNum_ + "," + birthday_ + "," + certi_;
+	}
+
 	string getEmployeeNum() {
 		return employeeNum_;
 	}
