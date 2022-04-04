@@ -16,7 +16,7 @@ int runAllCommand(string inputFile, string outputFile) {
 	vector<string> inputStrAll = inputInterpreter->readFile();
 	vector<string> outputStrAll;
 
-	for (auto inputStr : inputStrAll) {
+	for (const auto inputStr : inputStrAll) {
 		if (inputStr.length() == 0) break;
 		
 		// Todo : interface to Command Module

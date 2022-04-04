@@ -8,7 +8,7 @@ using namespace std;
 
 class InputInterpreter {
 public:
-    InputInterpreter(string fileName) : inputFileName_(fileName) {}
+    InputInterpreter(const string fileName) : inputFileName_(fileName) {}
     
     vector<string> readFile() {
         vector<string> inputStrAll;
@@ -28,5 +28,5 @@ public:
     }
 
 private:
-    string inputFileName_;
+    const string inputFileName_;
 };
