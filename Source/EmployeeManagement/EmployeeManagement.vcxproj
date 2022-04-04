@@ -141,19 +141,6 @@
   <ItemGroup>
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Condition.cpp" />
-    <ClCompile Include="ConditionBirthday.cpp" />
-    <ClCompile Include="ConditionCerti.cpp" />
-    <ClCompile Include="ConditionCL.cpp" />
-    <ClCompile Include="ConditionDayBirthday.cpp" />
-    <ClCompile Include="ConditionEmployeeNum.cpp" />
-    <ClCompile Include="ConditionFirstName.cpp" />
-    <ClCompile Include="ConditionLastName.cpp" />
-    <ClCompile Include="ConditionLastPhoneNumber.cpp" />
-    <ClCompile Include="ConditionMiddlePhoneNumber.cpp" />
-    <ClCompile Include="ConditionMonthBirthday.cpp" />
-    <ClCompile Include="ConditionName.cpp" />
-    <ClCompile Include="ConditionPhoneNumber.cpp" />
-    <ClCompile Include="ConditionYearBirthday.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="EmployeeManagement.cpp" />
     <ClCompile Include="main.cpp" />

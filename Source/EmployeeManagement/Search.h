@@ -2,6 +2,7 @@
 #include<iostream>
 #include<vector>
 #include <sstream>
+#include<map>
 #include"Employee.h"
 #include"Condition.h"
 using namespace std;
@@ -203,6 +204,7 @@ public:
 	}
 	virtual vector<Employee*>* doSearch(vector<SearchCond*> *searchCondList,bool findNdel) = 0;
 	virtual vector<Employee*>* doSearchnModify(vector<SearchCond*>* searchCondList, SEARCHTYPE type, string modField) = 0;
+	virtual void setEmployeeField(Employee* employee, string column, string modField) = 0;
 };
 
 
@@ -313,6 +315,35 @@ public:
 			doCondModMatching(employee, type, modField, foundList_, searchCondList);
 		}		
 		return foundList_;
+	};
+
+	void setEmployeeField(Employee* employee, string column, string modField) {
+		map<string, SEARCHTYPE> typeMapper = {
+			{"employeeNum", SEARCHTYPE::BYEMPLOYEENUM},
+			{"name",SEARCHTYPE::BYNAME},
+			{"cl",SEARCHTYPE::BYCL},
+			{"phoneNum",SEARCHTYPE::BYPHONENUM},
+			{"birthday",SEARCHTYPE::BYBIRTH},
+			{"certi",SEARCHTYPE::BYCERTI}
+		};
+		SEARCHTYPE searchType = typeMapper.at(column);
+		switch (searchType) {
+		case SEARCHTYPE::BYEMPLOYEENUM:
+			return employee->setEmployeeNum(modField);
+		case SEARCHTYPE::BYNAME:
+			return employee->setName(modField);
+		case SEARCHTYPE::BYCL:
+			return employee->setCL(modField);
+		case SEARCHTYPE::BYPHONENUM:
+			return employee->setPhoneNum(modField);
+		case SEARCHTYPE::BYBIRTH:
+			return employee->setBirthday(modField);
+		case SEARCHTYPE::BYCERTI:
+			return employee->setCerti(modField);
+		default:
+			break;
+		}
+		return;
 	};
 };
 
