@@ -34,6 +34,7 @@
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
     <ClInclude Include="MockEmployee.h" />
+    <ClInclude Include="MocVaildChecker.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
