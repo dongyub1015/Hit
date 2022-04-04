@@ -158,7 +158,7 @@
     <ClCompile Include="EmployeeManagement.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="UserInterface.cpp" />
-    <ClCompile Include="VaildChecker.cpp" />
+    <ClCompile Include="ValidityChecker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -172,7 +172,7 @@
     <ClInclude Include="IOChecker.h" />
     <ClInclude Include="OutputBuilder.h" />
     <ClInclude Include="Search.h" />
-    <ClInclude Include="VaildChecker.h" />
+    <ClInclude Include="ValidityChecker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
