@@ -1,28 +1,22 @@
 #include "pch.h"
 #include <string>
 #include "../EmployeeManagement/InputInterpreter.h"
+#include "../EmployeeManagement/IOChecker.h"
 #include "../EmployeeManagement/OutputBuilder.h"
 using namespace std;
 
 TEST(InputInterpreterTest, ValidFilenameTest) {
 
     string ext;
-    InputInterpreter input1("aaa.txt");
-    EXPECT_EQ(true, input1.isValidFileName());
-    InputInterpreter input2("txt");
-    EXPECT_EQ(false, input2.isValidFileName());
-    InputInterpreter input3(".aaa");
-    EXPECT_EQ(false, input3.isValidFileName());
-    InputInterpreter input4("abc..txt");
-    EXPECT_EQ(false, input4.isValidFileName());
-    InputInterpreter input5("/.txt");
-    EXPECT_EQ(false, input5.isValidFileName());
-    InputInterpreter input6("aa/b.txt");
-    EXPECT_EQ(false, input6.isValidFileName());
-    InputInterpreter input7("aa\\b.txt");
-    EXPECT_EQ(false, input7.isValidFileName());
-    InputInterpreter input8("filename,txt");
-    EXPECT_EQ(false, input8.isValidFileName());
+    IOChecker checker;
+    EXPECT_EQ(true, checker.isValidFileName("aaa.txt"));
+    EXPECT_EQ(false, checker.isValidFileName("txt"));
+    EXPECT_EQ(false, checker.isValidFileName(".aaa"));
+    EXPECT_EQ(false, checker.isValidFileName("abc..txt"));
+    EXPECT_EQ(false, checker.isValidFileName("/.txt"));
+    EXPECT_EQ(false, checker.isValidFileName("aa/b.txt"));
+    EXPECT_EQ(false, checker.isValidFileName("aa\\b.txt"));
+    EXPECT_EQ(false, checker.isValidFileName("filename,txt"));
 }
 TEST(InputInterpreterTest, ReadFileTest) {
     InputInterpreter input1("input_20_20_empty.txt");
