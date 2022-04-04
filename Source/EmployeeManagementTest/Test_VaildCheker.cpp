@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "../EmployeeManagement/VaildChecker.h"
 #include "../EmployeeManagement/VaildChecker.cpp"
+#include "MocVaildChecker.h"
 
 class VaildCheckerTest : public ::testing::Test 
 {
@@ -17,9 +18,7 @@ protected:
 		checker = new VaildChecker();
 	}
 
-	virtual void TearDown() override
-	{
-	}
+	virtual void TearDown() override { }
 };
 
 TEST_F(VaildCheckerTest, Parsing1) {
@@ -314,4 +313,23 @@ TEST(ModVaildChecker, checkSrchCond_modInfo) {
 	ASSERT_FALSE(checker->checkVaild("MOD, ,-d, ,birthday,0,birthday,199108008"));
 	ASSERT_FALSE(checker->checkVaild("MOD, ,-d, ,birthday,0,employee,07414900"));
 	ASSERT_FALSE(checker->checkVaild("MOD, ,-d, ,birthday,0,CERI,EEXT"));
+}
+
+TEST(ModVaildChecker, checkSrchCond_NoneOpt) {
+	VaildChecker* checker = new ModVaildChecker();
+
+	ASSERT_FALSE(checker->checkVaild("MOD, , , ,employee,18115040, birthday,20020311"));
+	ASSERT_FALSE(checker->checkVaild("MOD, , , ,birthday,20011318,CL,CL3"));
+	ASSERT_FALSE(checker->checkVaild("MOD, , , , ,0,birthday,19910808"));
+	EXPECT_TRUE(checker->checkVaild("MOD, , , ,phoneNum,010-7260-2826,birthday,19910808"));
+}
+
+using  ::testing::AtLeast;
+using  ::testing::Return;
+
+TEST(CommandVailidity, checkVaildFunc) {
+	MockVaildChecker  MockChecker("ADD, , , ,11125777,TKOQKIS HC,CL1,010-6734-2289,19991001,PRO");
+
+	EXPECT_CALL(MockChecker, checkVaild(MockChecker.str1)).Times(1).WillOnce(Return(true));
+	EXPECT_TRUE(MockChecker.checkVaild(MockChecker.str1));
 }
