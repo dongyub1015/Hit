@@ -27,7 +27,7 @@ private:
 		/* check Phone Number */
 		if (!checker.checkPhoneNum(empl->getPhoneNum())) {
 			return false;
-		}
+		}	
 
 		/* check Birthday*/
 		if (!checker.checkBirthday(empl->getBirthday())) {
@@ -49,7 +49,7 @@ public:
 		searchEnginePtr_ = new MultiSearch(&emList_);
 	};
 
-	bool addEmployee(string employeeNum, string name, string cl, string phoneNum, string birthday, string cert) {
+	bool addEmployee(const string employeeNum, const string name, const string cl, const string phoneNum, const string birthday, const string cert) {
 		/* PREMISE: assume all parameters are valid */
 
 		//Employee* empl = new Employee(employeeNum,  name, cl, phoneNum, birthday,cert);
@@ -68,13 +68,13 @@ public:
 		return true;
 	}
 	vector<Employee*>* searchEmployee(vector<SearchCond*>* cond, bool findNdel) {
-		//	/* TODO: find out Condition type by using decltyp fucntion */
+	//	/* TODO: find out Condition type by using decltyp fucntion */
 
 		return searchEnginePtr_->doSearch(cond, findNdel);
 	}
+	
 
-
-	vector<Employee*>* modifyEmployee(vector<SearchCond*>* cond, SEARCHTYPE type, string modField) {
+	vector<Employee*>* modifyEmployee(vector<SearchCond*>* cond, const SEARCHTYPE type, const string modField) {
 		return searchEnginePtr_->doSearchnModify(cond, type, modField);
 	}
 };
