@@ -1,3 +1,3 @@
 /*ConditionName.cpp*/
 
-#include "ConditionName.h"
+#include "Condition.h"

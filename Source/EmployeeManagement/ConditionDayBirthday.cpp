@@ -1,3 +1,3 @@
 /*ConditionDayBirthday.cpp*/
 
-#include "ConditionDayBirthday.h"
+#include "Condition.h"
