@@ -12,10 +12,17 @@ public:
 	vector<string> outputList;
 
 	bool writeFile(vector<string> outputStrAll) {
+        ofstream fout(outputFileName_);
 
-		return true;
-	}
+        if (fout.fail()) {
+            return false;
+        }
 
+        for (auto str : outputStrAll) {
+            fout << str << endl;
+        }
+        return true;
+    }
 
 private:
 	string outputFileName_;
