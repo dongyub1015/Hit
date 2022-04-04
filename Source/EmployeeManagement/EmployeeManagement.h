@@ -4,6 +4,7 @@
 #include"Employee.h"
 #include"Condition.h"
 #include"Search.h"
+#include"ValidityChecker.h"
 
 
 using namespace std;
@@ -11,66 +12,30 @@ using namespace std;
 
 class EmployeeManagement {
 private:
-	bool isNumber(const string& str)
-	{
-		for (char const& c : str) {
-			if (std::isdigit(c) == 0) return false;
-		}
-		return true;
-	}
-
-	vector<string>* spiltStr(const string ref, const string delim) {
-		vector<string>* spiltStr = new vector<string>(0);
-		string token;
-		int spos = 0, len = delim.size(), epos;
-
-		while ((epos = ref.find(delim, spos)) != string::npos) {
-			token = ref.substr(spos, epos - spos);
-			spos = epos + len;
-			spiltStr->push_back(token);
-		}
-
-		spiltStr->push_back(ref.substr(spos));
-		return spiltStr;
-	}
-
 	bool isValidEmployeeInfo(Employee* empl) {
+		ValidChecker checker;
+
 		/* check EmployeeNum */
-		if (!isNumber(empl->getEmployeeNum())) {
+		if (!checker.IsNumberString(empl->getEmployeeNum())) {
 			return false;
 		}
 		/* Name can be any character and numbers */
 		/* check cl */
-		if (empl->getCL() != "CL1" && empl->getCL() != "CL2" &&
-			empl->getCL() != "CL3" && empl->getCL() != "CL4") {
+		if (!checker.checkCL(empl->getCL())) {
 			return false;
 		}
 		/* check Phone Number */
-		vector<string>* phonenumlList = spiltStr(empl->getPhoneNum(), "-");
-		if (phonenumlList->size() != 3 || (*phonenumlList)[0] != "010" || (*phonenumlList)[1].size() != 4 ||
-			(*phonenumlList)[2].size() != 4 || !isNumber((*phonenumlList)[1]) || !isNumber((*phonenumlList)[2])) {
+		if (!checker.checkPhoneNum(empl->getPhoneNum())) {
 			return false;
 		}	
 
 		/* check Birthday*/
-		if ((empl->getBirthday()).size() != 8) {
+		if (!checker.checkBirthday(empl->getBirthday())) {
 			return false;
 		}
-		string yyyy = (empl->getBirthday()).substr(0, 4);
-		string mm = (empl->getBirthday()).substr(4, 2);
-		string dd = (empl->getBirthday()).substr(6, 2);
 
-		if (stoi(yyyy) < 1900 || stoi(yyyy) > 2021) {
-			return false;
-		}
-		if (stoi(mm) < 1 || stoi(mm) > 12) {
-			return false;
-		}
-		if (stoi(dd) < 1 || stoi(dd) > 31) {
-			return false;
-		}
 		/* check Certi*/
-		if (empl->getCerti() != "ADV" && empl->getCerti() != "PRO" && empl->getCerti() != "EX") {
+		if (!checker.checkCertiGrade(empl->getCerti())) {
 			return false;
 		}
 		return true;

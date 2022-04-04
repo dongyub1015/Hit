@@ -7,17 +7,10 @@ using namespace std;
 
 class ValidChecker {
 private:
-	static bool checkEmployeeNum(const string& EmployeeNum);
-	static bool checkEmployeeName(const string& EmployeeName);
-	static bool checkCL(const string& ClType);
-	static bool checkPhoneNum(const string& PhoneNum);
-	static bool checkBirthday(const string& Birthday);
-	static bool checkCertiGrade(const string& CertiGrade);
 	static bool checkOpt1(const string& Opt1);
 	static bool checkOpt2(const string& Opt2);
 	static bool checkOpt3(const string& Opt3);
 
-	bool IsNumberString(const string& EmployeeNum);
 	bool IsCapitalString(const string& Str);
 	bool checkOptName(const string& OptName);
 	bool checkOptPhoneNum(const string& OptPhoneNum);
@@ -45,6 +38,14 @@ protected:
 	int convertColumnStrToInt(const string& column);
 
 public:
+	bool IsNumberString(const string& EmployeeNum);
+	static bool checkEmployeeNum(const string& EmployeeNum);
+	static bool checkEmployeeName(const string& EmployeeName);
+	static bool checkCL(const string& ClType);
+	static bool checkPhoneNum(const string& PhoneNum);
+	static bool checkBirthday(const string& Birthday);
+	static bool checkCertiGrade(const string& CertiGrade);
+
 	vector<string> parseString(string source, string delimiter);
 	virtual bool checkValid(const string& InputStr) { return false; }
 };
