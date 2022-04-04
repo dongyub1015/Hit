@@ -145,6 +145,7 @@
     <ClCompile Include="ConditionCerti.cpp" />
     <ClCompile Include="ConditionCL.cpp" />
     <ClCompile Include="ConditionDayBirthday.cpp" />
+    <ClCompile Include="ConditionEmployeeNum.cpp" />
     <ClCompile Include="ConditionFirstName.cpp" />
     <ClCompile Include="ConditionLastName.cpp" />
     <ClCompile Include="ConditionLastPhoneNumber.cpp" />
@@ -165,22 +166,11 @@
   <ItemGroup>
     <ClInclude Include="Command.h" />
     <ClInclude Include="Condition.h" />
-    <ClInclude Include="ConditionBirthday.h" />
-    <ClInclude Include="ConditionCerti.h" />
-    <ClInclude Include="ConditionCL.h" />
-    <ClInclude Include="ConditionDayBirthday.h" />
-    <ClInclude Include="ConditionFirstName.h" />
-    <ClInclude Include="ConditionLastName.h" />
-    <ClInclude Include="ConditionLastPhoneNumber.h" />
-    <ClInclude Include="ConditionMiddlePhoneNumber.h" />
-    <ClInclude Include="ConditionMonthBirthday.h" />
-    <ClInclude Include="ConditionName.h" />
-    <ClInclude Include="ConditionPhoneNumber.h" />
-    <ClInclude Include="ConditionYearBirthday.h" />
     <ClInclude Include="InputInterpreter.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="EmployeeManagement.h" />
     <ClInclude Include="OutputBuilder.h" />
+    <ClInclude Include="Search.h" />
     <ClInclude Include="VaildChecker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
