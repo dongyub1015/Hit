@@ -7,7 +7,7 @@ using namespace std;
 
 class OutputBuilder {
 public:
-	OutputBuilder(string fileName) : outputFileName_(fileName) {}
+	OutputBuilder(const string fileName) : outputFileName_(fileName) {}
 
 	vector<string> outputList;
 
@@ -25,5 +25,5 @@ public:
     }
 
 private:
-	string outputFileName_;
+    const string outputFileName_;
 };

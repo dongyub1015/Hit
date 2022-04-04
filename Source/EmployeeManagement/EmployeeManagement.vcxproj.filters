@@ -104,6 +104,9 @@
     <ClInclude Include="OutputBuilder.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="IOChecker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="ValidityChecker.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>

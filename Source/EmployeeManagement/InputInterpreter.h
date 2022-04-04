@@ -8,7 +8,7 @@ using namespace std;
 
 class InputInterpreter {
 public:
-    InputInterpreter(string fileName) : inputFileName_(fileName) {}
+    InputInterpreter(const string fileName) : inputFileName_(fileName) {}
     
     vector<string> readFile() {
         vector<string> inputStrAll;
@@ -27,20 +27,6 @@ public:
         return inputStrAll;
     }
 
-    bool isValidFileName() {
-        if (inputFileName_.length() <= 4) return false;
-        if (inputFileName_.find("/") != string::npos) return false;
-        if (inputFileName_.find("\\") != string::npos) return false;
-        if (inputFileName_.substr(inputFileName_.size() - 4, 4) != ".txt") return false;
-
-        int dotCount = 0;
-        for (auto character : inputFileName_) {
-            if (character == '.') dotCount++;
-            if (dotCount > 1) return false;
-        }
-        return true;
-    }
-
 private:
-    string inputFileName_;
+    const string inputFileName_;
 };
