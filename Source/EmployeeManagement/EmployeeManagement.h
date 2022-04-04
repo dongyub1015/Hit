@@ -19,7 +19,7 @@ private:
 		return true;
 	}
 
-	vector<string>* spiltStr(string ref, string delim) {
+	vector<string>* spiltStr(const string ref, const string delim) {
 		vector<string>* spiltStr = new vector<string>(0);
 		string token;
 		int spos = 0, len = delim.size(), epos;
@@ -50,7 +50,7 @@ private:
 		if (phonenumlList->size() != 3 || (*phonenumlList)[0] != "010" || (*phonenumlList)[1].size() != 4 ||
 			(*phonenumlList)[2].size() != 4 || !isNumber((*phonenumlList)[1]) || !isNumber((*phonenumlList)[2])) {
 			return false;
-		}
+		}	
 
 		/* check Birthday*/
 		if ((empl->getBirthday()).size() != 8) {
@@ -84,7 +84,7 @@ public:
 		searchEnginePtr_ = new MultiSearch(&emList_);
 	};
 
-	bool addEmployee(string employeeNum, string name, string cl, string phoneNum, string birthday, string cert) {
+	bool addEmployee(const string employeeNum, const string name, const string cl, const string phoneNum, const string birthday, const string cert) {
 		/* PREMISE: assume all parameters are valid */
 
 		//Employee* empl = new Employee(employeeNum,  name, cl, phoneNum, birthday,cert);
@@ -103,13 +103,13 @@ public:
 		return true;
 	}
 	vector<Employee*>* searchEmployee(vector<SearchCond*>* cond, bool findNdel) {
-		//	/* TODO: find out Condition type by using decltyp fucntion */
+	//	/* TODO: find out Condition type by using decltyp fucntion */
 
 		return searchEnginePtr_->doSearch(cond, findNdel);
 	}
+	
 
-
-	vector<Employee*>* modifyEmployee(vector<SearchCond*>* cond, SEARCHTYPE type, string modField) {
+	vector<Employee*>* modifyEmployee(vector<SearchCond*>* cond, const SEARCHTYPE type, const string modField) {
 		return searchEnginePtr_->doSearchnModify(cond, type, modField);
 	}
 };

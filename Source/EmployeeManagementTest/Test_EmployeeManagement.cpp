@@ -34,11 +34,11 @@ TEST(TestCaseEmployeeManagement, ADDTEST_POSITIVE)
 
 
 /*
-TITLE : ADDTEST_NATATIVE
+TITLE : ADDTEST_NAGATIVE
 PURPOSE :
 	add invalid input to addEmployee member function and see if it returns outputs accordingly.
 */
-TEST(TestCaseEmployeeManagement, ADDTEST_NATATIVE)
+TEST(TestCaseEmployeeManagement, ADDTEST_NAGATIVE)
 {
 	EmployeeManagement emMgmt;
 
