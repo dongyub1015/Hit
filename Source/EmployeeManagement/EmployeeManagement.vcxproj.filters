@@ -36,9 +36,6 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="VaildChecker.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ConditionBirthday.cpp">
       <Filter>소스 파일\Condition</Filter>
     </ClCompile>
@@ -78,6 +75,9 @@
     <ClCompile Include="ConditionEmployeeNum.cpp">
       <Filter>소스 파일\Condition</Filter>
     </ClCompile>
+    <ClCompile Include="ValidityChecker.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -87,9 +87,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="EmployeeManagement.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="VaildChecker.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Employee.h">
@@ -108,6 +105,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="IOChecker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ValidityChecker.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

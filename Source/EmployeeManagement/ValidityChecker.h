@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class VaildChecker {
+class ValidChecker {
 private:
 	static bool checkEmployeeNum(const string& EmployeeNum);
 	static bool checkEmployeeName(const string& EmployeeName);
@@ -16,6 +16,15 @@ private:
 	static bool checkOpt1(const string& Opt1);
 	static bool checkOpt2(const string& Opt2);
 	static bool checkOpt3(const string& Opt3);
+
+	bool IsNumberString(const string& EmployeeNum);
+	bool IsCapitalString(const string& Str);
+	bool checkOptName(const string& OptName);
+	bool checkOptPhoneNum(const string& OptPhoneNum);
+	bool checkOptY_Birthday(const string& OptY_Birthday);
+	bool checkOptM_Birthday(const string& OptM_Birthday);
+	bool checkOptD_Birthday(const string& OptD_Birthday);
+	bool checkOptNone(const string& OptNone1, const string& OptNone2);
 
 protected:
 	enum ColumnNum {
@@ -37,25 +46,25 @@ protected:
 
 public:
 	vector<string> parseString(string source, string delimiter);
-	virtual bool checkVaild(const string& InputStr) { return false; }
+	virtual bool checkValid(const string& InputStr) { return false; }
 };
 
-class AddVaildChecker : public VaildChecker {
+class AddValidChecker : public ValidChecker {
 public:
-	virtual bool checkVaild(const string& InputStr) ;
+	virtual bool checkValid(const string& InputStr) ;
 };
 
-class DelVaildChecker : public VaildChecker {
+class DelValidChecker : public ValidChecker {
 public:
-	virtual bool checkVaild(const string& InputStr);
+	virtual bool checkValid(const string& InputStr);
 };
 
-class SchVaildChecker : public VaildChecker {
+class SchValidChecker : public ValidChecker {
 public:
-	virtual bool checkVaild(const string& InputStr);
+	virtual bool checkValid(const string& InputStr);
 };
 
-class ModVaildChecker : public VaildChecker {
+class ModValidChecker : public ValidChecker {
 public:
-	virtual bool checkVaild(const string& InputStr);
+	virtual bool checkValid(const string& InputStr);
 };
