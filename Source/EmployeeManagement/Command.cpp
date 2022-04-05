@@ -1,57 +1,70 @@
 /*Command.cpp*/
 
 #include "Command.h"
-#include "Condition.h"
+#include <algorithm>
 
 
 vector<Command*> commandList = {
 	new AddCommand(),new DelCommand(),new SchCommand(),new ModCommand()
 };
 
-Condition* selectCondition(const string& option2, const string& column, const string& compareValue) {
-	if (column == "employeeNum") return new ConditionEmployeeNum(compareValue);
-	else if (column == "cl") return new ConditionCL(compareValue);
-	else if (column == "certi") return new ConditionCerti(compareValue);
-	else if (column == "name") {
-		// f l
-		if (option2 == "-f") return new ConditionFirstName(compareValue);
-		else if (option2 == "-l") return new ConditionLastName(compareValue);
-		return new ConditionName(compareValue);
+map<string, SEARCHTYPE> typeMapper = {
+	{"employeeNum", SEARCHTYPE::BYEMPLOYEENUM},
+	{"name",SEARCHTYPE::BYNAME},
+	{"cl",SEARCHTYPE::BYCL},
+	{"phoneNum",SEARCHTYPE::BYPHONENUM},
+	{"birthday",SEARCHTYPE::BYBIRTH},
+	{"certi",SEARCHTYPE::BYCERTI}
+};
+
+SEARCHTYPE getSearchType(string column) {
+	return typeMapper.at(column);
+};
+
+SearchCond* getOptionSearch(string option2, string compareColumn, string compareValue) {
+	SEARCHTYPE searchType = getSearchType(compareColumn);
+	if (compareColumn == "name") {
+		SearchCondName* returnCond = new SearchCondName(searchType, compareValue);
+		if (option2 == "-f") returnCond->setFirstNameSearch();
+		else if (option2 == "-l") returnCond->setLastNameSearch();
+		return returnCond;
 	}
-	else if (column == "phoneNum") {
-		// m l
-		if (option2 == "-m") return new ConditionMiddlePhoneNumber(compareValue);
-		else if (option2 == "-l") return new ConditionLastPhoneNumber(compareValue);
-		return new ConditionPhoneNumber(compareValue);
+		else if (compareColumn == "phoneNum") {
+		SearchCondPhonenum* returnCond = new SearchCondPhonenum(searchType, compareValue);
+		if (option2 == "-m") returnCond->setSearchIdx(PHONEIDX::SECOND_F);
+		else if (option2 == "-l") returnCond->setSearchIdx(PHONEIDX::THIRD_F);
+		return returnCond;
 
 	}
-	else if (column == "birthday") {
+		else if (compareColumn == "birthday") {
 		// y m d
-		if (option2 == "-y") return new ConditionYearBirthday(compareValue);
-		else if (option2 == "-m") return new ConditionMonthBirthday(compareValue);
-		else if (option2 == "-d") return new ConditionDayBirthday(compareValue);
-		return new ConditionBirthday(compareValue);
+		SearchCondDate* returnCond = new SearchCondDate(searchType, compareValue);
+		if (option2 == "-y") returnCond->setSearchIdx(PHONEIDX::FIRST_F);
+		else if (option2 == "-m") returnCond->setSearchIdx(PHONEIDX::SECOND_F);
+		else if (option2 == "-d") returnCond->setSearchIdx(PHONEIDX::THIRD_F);
+		return returnCond;
 	}
+	return new SearchCondStr(searchType, compareValue);
 }
 
-vector<string> Command::employeeResultToString(vector<Employee> employeeResult) {
-	if(this->type_=="ADD") return vector<string>();
+vector<string> Command::employeeResultToString(vector<Employee*>* employeeResult) {
+	if(employeeResult == nullptr || this->type_=="ADD") return vector<string>();
 
 	vector<string> result;
-	if (employeeResult.empty()) {
+	if (employeeResult->empty()) {
 		result.push_back(this->type_ + ",NONE");
 		return result;
 	}
 	if (option1_ != "-p") {
-		result.push_back(this->type_ + "," + to_string(employeeResult.size()));
+		result.push_back(this->type_ + "," + to_string(employeeResult->size()));
 		return result;
 	}
 	{}// TODO: employeeResult sorting
 
 	int maxReturnCnt = 5;
-	for (auto e : employeeResult) {
+	for (auto e : *employeeResult) {
 		if (maxReturnCnt <= 0) break;
-		string toString = this->type_ + "," + e.toString();
+		string toString = this->type_ + "," + e->toString();
 		result.push_back(toString);
 		maxReturnCnt--;
 	}
@@ -74,9 +87,9 @@ vector<string> Command::makeResult(EmployeeManagement* EM, const string& command
 	}
 }
 
-vector<Employee> AddCommand::runCommand(EmployeeManagement* EM) {
+vector<Employee*>* AddCommand::runCommand(EmployeeManagement* EM) {
 	validChecker_ = new AddValidChecker();
-	if (!validChecker_->checkValid(commandStr_)) return vector<Employee>();
+	if (!validChecker_->checkValid(commandStr_)) return nullptr;
 
 	vector<string> strList;
 	strList = validChecker_->parseString(commandStr_, ",");
@@ -88,12 +101,12 @@ vector<Employee> AddCommand::runCommand(EmployeeManagement* EM) {
 	string certi = strList[9];
 
 	EM->addEmployee(employeeNum, name, cl, phoneNum, birthday, certi);
-	return vector<Employee>();
+	return nullptr;
 }
 
-vector<Employee> DelCommand::runCommand(EmployeeManagement* EM) {
+vector<Employee*>* DelCommand::runCommand(EmployeeManagement* EM) {
 	validChecker_ = new DelValidChecker();
-	if (!validChecker_->checkValid(commandStr_)) return vector<Employee>();
+	if (!validChecker_->checkValid(commandStr_)) return nullptr;
 
 	vector<string> strList;
 	strList = validChecker_->parseString(commandStr_, ",");
@@ -101,14 +114,16 @@ vector<Employee> DelCommand::runCommand(EmployeeManagement* EM) {
 	option2_ = strList[2];
 	string compareColumn = strList[4];
 	string compareValue = strList[5];
-	condition_ = selectCondition(option2_, compareColumn, compareValue);
 
-	return EM->deleteEmployee_(*condition_);
+	vector<SearchCond*> searchCond;
+	searchCond.push_back(getOptionSearch(option2_, compareColumn, compareValue));
+
+	return EM->searchEmployee(&searchCond, true);
 }
 
-vector<Employee> SchCommand::runCommand(EmployeeManagement* EM) {
+vector<Employee*>* SchCommand::runCommand(EmployeeManagement* EM) {
 	validChecker_ = new SchValidChecker();
-	if (!validChecker_->checkValid(commandStr_)) return vector<Employee>();
+	if (!validChecker_->checkValid(commandStr_)) return nullptr;
 
 	vector<string> strList;
 	strList = validChecker_->parseString(commandStr_, ",");
@@ -116,14 +131,16 @@ vector<Employee> SchCommand::runCommand(EmployeeManagement* EM) {
 	option2_ = strList[2];
 	string compareColumn = strList[4];
 	string compareValue = strList[5];
-	condition_ = selectCondition(option2_, compareColumn, compareValue);
 
-	return EM->searchEmployee(*condition_);
+	vector<SearchCond*> searchCond;
+	searchCond.push_back(getOptionSearch(option2_, compareColumn, compareValue));
+
+	return EM->searchEmployee(&searchCond, false);
 }
 
-vector<Employee> ModCommand::runCommand(EmployeeManagement* EM) {
+vector<Employee*>* ModCommand::runCommand(EmployeeManagement* EM) {
 	validChecker_ = new ModValidChecker();
-	if (!validChecker_->checkValid(commandStr_)) return vector<Employee>();
+	if (!validChecker_->checkValid(commandStr_)) return nullptr;
 
 	vector<string> strList;
 	strList = validChecker_->parseString(commandStr_, ",");
@@ -133,7 +150,10 @@ vector<Employee> ModCommand::runCommand(EmployeeManagement* EM) {
 	string compareValue = strList[5];
 	string modifyColumn = strList[6];
 	string modifyValue = strList[7];
-	condition_ = selectCondition(option2_, compareColumn, compareValue);
 
-	return EM->modifyEmployee(*condition_, modifyColumn, modifyValue);
+	vector<SearchCond*> searchCond;
+	searchCond.push_back(getOptionSearch(option2_, compareColumn, compareValue));
+	SEARCHTYPE searchType = getSearchType(modifyColumn);
+
+	return EM->modifyEmployee(&searchCond, searchType, modifyValue);
 }
