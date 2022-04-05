@@ -23,38 +23,31 @@ SEARCHTYPE getSearchType(string column) {
 
 SearchCond* getOptionSearch(string option2, string compareColumn, string compareValue) {
 	SEARCHTYPE searchType = getSearchType(compareColumn);
-	if (compareColumn == "name") {
+	switch (searchType)
+	{
+	case SEARCHTYPE::BYNAME: {
 		SearchCondName* returnCond = new SearchCondName(searchType, compareValue);
 		if (option2 == "-f") returnCond->setFirstNameSearch();
 		else if (option2 == "-l") returnCond->setLastNameSearch();
 		return returnCond;
 	}
-		else if (compareColumn == "phoneNum") {
+	case SEARCHTYPE::BYPHONENUM: {
 		SearchCondPhonenum* returnCond = new SearchCondPhonenum(searchType, compareValue);
 		if (option2 == "-m") returnCond->setSearchIdx(PHONEIDX::SECOND_F);
 		else if (option2 == "-l") returnCond->setSearchIdx(PHONEIDX::THIRD_F);
 		return returnCond;
-
 	}
-		else if (compareColumn == "birthday") {
-		// y m d
+	case SEARCHTYPE::BYBIRTH: {
 		SearchCondDate* returnCond = new SearchCondDate(searchType, compareValue);
 		if (option2 == "-y") returnCond->setSearchIdx(PHONEIDX::FIRST_F);
 		else if (option2 == "-m") returnCond->setSearchIdx(PHONEIDX::SECOND_F);
 		else if (option2 == "-d") returnCond->setSearchIdx(PHONEIDX::THIRD_F);
 		return returnCond;
 	}
+	case SEARCHTYPE::TYPEERROR:
+		break;
+	}
 	return new SearchCondStr(searchType, compareValue);
-}
-
-
-int employeeNumToYear(string employeeNum) {
-	int employeeNumYear = stoi(employeeNum.substr(0, 2));
-	if (68 < employeeNumYear && employeeNumYear < 100)
-		employeeNumYear += 1900;
-	else
-		employeeNumYear += 2000;
-	return employeeNumYear;
 }
 
 vector<string> Command::employeeResultToString(vector<Employee*>* employeeResult) {
@@ -75,8 +68,7 @@ vector<string> Command::employeeResultToString(vector<Employee*>* employeeResult
 	int maxReturnCnt = 5;
 	for (auto e : *employeeResult) {
 		if (maxReturnCnt <= 0) break;
-		string toString = this->type_ + "," + e->toString();
-		result.push_back(toString);
+		result.push_back(this->type_ + "," + e->toString());
 		maxReturnCnt--;
 	}
 	return result;
