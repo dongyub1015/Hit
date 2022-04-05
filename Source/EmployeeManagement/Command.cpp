@@ -29,15 +29,13 @@ SearchCond* getOptionSearch(string option2, string compareColumn, string compare
 		else if (option2 == "-l") returnCond->setLastNameSearch();
 		return returnCond;
 	}
-		else if (compareColumn == "phoneNum") {
+	else if (compareColumn == "phoneNum") {
 		SearchCondPhonenum* returnCond = new SearchCondPhonenum(searchType, compareValue);
 		if (option2 == "-m") returnCond->setSearchIdx(PHONEIDX::SECOND_F);
 		else if (option2 == "-l") returnCond->setSearchIdx(PHONEIDX::THIRD_F);
 		return returnCond;
-
 	}
-		else if (compareColumn == "birthday") {
-		// y m d
+	else if (compareColumn == "birthday") {
 		SearchCondDate* returnCond = new SearchCondDate(searchType, compareValue);
 		if (option2 == "-y") returnCond->setSearchIdx(PHONEIDX::FIRST_F);
 		else if (option2 == "-m") returnCond->setSearchIdx(PHONEIDX::SECOND_F);
