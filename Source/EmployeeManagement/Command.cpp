@@ -59,28 +59,7 @@ vector<string> Command::employeeResultToString(vector<Employee*>* employeeResult
 		result.push_back(this->type_ + "," + to_string(employeeResult->size()));
 		return result;
 	}
-	// TODO: employeeResult sorting
-	//vector<pair<int, Employee>> v;
-	//for (auto match : employeeResult) {
-
-	//	if (stoi(match.getEmployeeNum().substr(0, 2)) >= 0 && stoi(match.getEmployeeNum().substr(0, 2)) <= 21) {
-	//		v.push_back(pair<int, Employee>(stoi("1" + match.getEmployeeNum()), match));
-	//	}
-	//	else {
-	//		v.push_back(pair<int, Employee>(stoi(match.getEmployeeNum()), match));
-	//	}
-	//}
-	//sort(v.begin(), v.end());
-
-	//{}// TODO: employeeResult sorting
-
-	//int maxReturnCnt = 5;
-	//for (auto e : v) {
-	//	if (maxReturnCnt <= 0) break;
-	//	string toString = this->type_ + "," + e.second.toString();
-	//	result.push_back(toString);
-	//	maxReturnCnt--;
-	//}
+	{}// TODO: employeeResult sorting
 
 	int maxReturnCnt = 5;
 	for (auto e : *employeeResult) {
