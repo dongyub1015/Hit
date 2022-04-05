@@ -277,9 +277,15 @@ private:
 		for (auto cond : (*searchCondList)) {
 			string ret = getEmployeeField(employee, (*cond).getsSearchType());
 			if ((*cond).isMatched(ret) == true) {
-
+				Employee* tmpEmployee(new Employee());
+				tmpEmployee->setEmployeeNum(employee->getEmployeeNum());
+				tmpEmployee->setName(employee->getName());
+				tmpEmployee->setCL(employee->getCL());
+				tmpEmployee->setPhoneNum(employee->getPhoneNum());
+				tmpEmployee->setBirthday(employee->getBirthday());
+				tmpEmployee->setCerti(employee->getCerti());
+				(*foundList_).push_back(tmpEmployee);
 				setEmployeeField(employee, type, modField);
-				(*foundList_).push_back(employee);
 				return;
 			}
 		}
