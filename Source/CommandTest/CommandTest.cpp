@@ -2,8 +2,6 @@
 #include "../EmployeeManagement/Command.h"
 #include "../EmployeeManagement/Command.cpp"
 #include "../EmployeeManagement/EmployeeManagement.h"
-#include "../EmployeeManagement/Condition.h"
-#include "../EmployeeManagement/Condition.cpp"
 #include "../EmployeeManagement/ValidityChecker.h"
 #include "../EmployeeManagement/ValidityChecker.cpp"
 
