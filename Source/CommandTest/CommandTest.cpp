@@ -74,8 +74,62 @@ TEST_F(CommandTest, SchTest) {
 	}
 	resultExpected.push_back("SCH,NONE");
 
+	ASSERT_EQ(resultReal.size(), resultExpected.size());
 	for (int i = 0; i < resultReal.size(); i++)
 	{
+		EXPECT_EQ(resultReal[i], resultExpected[i]);
+	}
+}
+
+TEST_F(CommandTest, SchWithSortingTest) {
+
+	command->makeResult(EM, "ADD, , , ,69139568,SSDGH HMEFFEU,CL4,010-7260-4828,19640910,PRO");
+	EXPECT_EQ(EM->emList_.size(), 5);
+	command->makeResult(EM, "ADD, , , ,69149568,SSDGH HMEFFEU,CL4,010-7260-4828,19640910,PRO");
+	EXPECT_EQ(EM->emList_.size(), 6);
+
+	for (auto stringLine : command->makeResult(EM, "SCH,-p,-m, ,birthday,09")) {
+		resultReal.push_back(stringLine);
+	}
+	resultExpected.push_back("SCH,69139568,SSDGH HMEFFEU,CL4,010-7260-4828,19640910,PRO");
+	resultExpected.push_back("SCH,69149568,SSDGH HMEFFEU,CL4,010-7260-4828,19640910,PRO");
+	resultExpected.push_back("SCH,09129568,SLALH HMEFFEU,CL2,010-7260-1258,19640910,PRO");
+	resultExpected.push_back("SCH,12002541,ALWPW HMEFFEU,CL3,010-1522-7258,19640910,ADV");
+	resultExpected.push_back("SCH,19129568,SRERLALH HMEF,CL2,010-7260-9521,19640910,PRO");
+
+	ASSERT_EQ(resultReal.size(), resultExpected.size());
+	for (int i = 0; i < resultReal.size(); i++)
+	{
+
+		EXPECT_EQ(resultReal[i], resultExpected[i]);
+	}
+}
+
+TEST_F(CommandTest, DelAndSchWithSortingTest) {
+
+	command->makeResult(EM, "ADD, , , ,69139568,SSDGH HMEFFEU,CL4,010-7260-4828,19640910,PRO");
+	EXPECT_EQ(EM->emList_.size(), 5);
+	command->makeResult(EM, "ADD, , , ,69149568,SSDGH HMEFFEU,CL4,010-7260-4828,19640910,PRO");
+	EXPECT_EQ(EM->emList_.size(), 6);
+
+	command->makeResult(EM, "DEL, , , ,employeeNum,69139568");
+	EXPECT_EQ(EM->emList_.size(), 5);
+	command->makeResult(EM, "DEL, , , ,employeeNum,69149568");
+	EXPECT_EQ(EM->emList_.size(), 4);
+	command->makeResult(EM, "DEL, , , ,employeeNum,19129568");
+	EXPECT_EQ(EM->emList_.size(), 3);
+
+	for (auto stringLine : command->makeResult(EM, "SCH,-p,-m, ,birthday,09")) {
+		resultReal.push_back(stringLine);
+	}
+	resultExpected.push_back("SCH,09129568,SLALH HMEFFEU,CL2,010-7260-1258,19640910,PRO");
+	resultExpected.push_back("SCH,12002541,ALWPW HMEFFEU,CL3,010-1522-7258,19640910,ADV");
+	resultExpected.push_back("SCH,20123566,SRERL ALHHMEF,CL2,010-1258-5486,19640910,PRO");
+
+	ASSERT_EQ(resultReal.size(), resultExpected.size());
+	for (int i = 0; i < resultReal.size(); i++)
+	{
+
 		EXPECT_EQ(resultReal[i], resultExpected[i]);
 	}
 }
@@ -93,7 +147,7 @@ TEST_F(CommandTest, ModAndDeleteTest) {
 	resultExpected.push_back("SCH,NONE");
 	EXPECT_EQ(EM->emList_.size(), 2);
 
-
+	ASSERT_EQ(resultReal.size(), resultExpected.size());
 	for (int i = 0; i < resultReal.size(); i++)
 	{
 		EXPECT_EQ(resultReal[i], resultExpected[i]);
