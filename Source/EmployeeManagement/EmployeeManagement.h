@@ -2,7 +2,6 @@
 #include<iostream>
 #include<vector>
 #include"Employee.h"
-#include"Condition.h"
 #include"Search.h"
 #include"ValidityChecker.h"
 
@@ -71,10 +70,6 @@ public:
 
 		/*add obj to List */
 		emList_.push_back(empl);
-		return true;
-	}
-
-	bool deleteEmployee(Condition& cond) {
 		return true;
 	}
 

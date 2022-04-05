@@ -1,7 +1,6 @@
 #pragma once
 #include<iostream>
 #include<string>
-#include "Condition.h"
 #include "EmployeeManagement.h"
 #include "ValidityChecker.h"
 
@@ -14,7 +13,6 @@ protected:
 	string commandStr_;
 	string option1_;
 	string option2_;
-	Condition* condition_ = nullptr;
 	ValidChecker* validChecker_;
 	string type_;
 

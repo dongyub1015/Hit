@@ -1,7 +1,6 @@
 /*Command.cpp*/
 
 #include "Command.h"
-#include "Condition.h"
 #include <algorithm>
 
 
@@ -17,33 +16,6 @@ map<string, SEARCHTYPE> typeMapper = {
 	{"birthday",SEARCHTYPE::BYBIRTH},
 	{"certi",SEARCHTYPE::BYCERTI}
 };
-
-Condition* selectCondition(const string& option2, const string& column, const string& compareValue) {
-	if (column == "employeeNum") return new ConditionEmployeeNum(compareValue);
-	else if (column == "cl") return new ConditionCL(compareValue);
-	else if (column == "certi") return new ConditionCerti(compareValue);
-	else if (column == "name") {
-		// f l
-		if (option2 == "-f") return new ConditionFirstName(compareValue);
-		else if (option2 == "-l") return new ConditionLastName(compareValue);
-		return new ConditionName(compareValue);
-	}
-	else if (column == "phoneNum") {
-		// m l
-		if (option2 == "-m") return new ConditionMiddlePhoneNumber(compareValue);
-		else if (option2 == "-l") return new ConditionLastPhoneNumber(compareValue);
-		return new ConditionPhoneNumber(compareValue);
-
-	}
-	else if (column == "birthday") {
-		// y m d
-		if (option2 == "-y") return new ConditionYearBirthday(compareValue);
-		else if (option2 == "-m") return new ConditionMonthBirthday(compareValue);
-		else if (option2 == "-d") return new ConditionDayBirthday(compareValue);
-		return new ConditionBirthday(compareValue);
-	}
-}
-
 
 SEARCHTYPE getSearchType(string column) {
 	return typeMapper.at(column);
@@ -142,7 +114,6 @@ vector<Employee*>* DelCommand::runCommand(EmployeeManagement* EM) {
 	option2_ = strList[2];
 	string compareColumn = strList[4];
 	string compareValue = strList[5];
-	condition_ = selectCondition(option2_, compareColumn, compareValue);
 
 	vector<SearchCond*> searchCond;
 	searchCond.push_back(getOptionSearch(option2_, compareColumn, compareValue));
@@ -160,7 +131,6 @@ vector<Employee*>* SchCommand::runCommand(EmployeeManagement* EM) {
 	option2_ = strList[2];
 	string compareColumn = strList[4];
 	string compareValue = strList[5];
-	condition_ = selectCondition(option2_, compareColumn, compareValue);
 
 	vector<SearchCond*> searchCond;
 	searchCond.push_back(getOptionSearch(option2_, compareColumn, compareValue));
@@ -180,7 +150,6 @@ vector<Employee*>* ModCommand::runCommand(EmployeeManagement* EM) {
 	string compareValue = strList[5];
 	string modifyColumn = strList[6];
 	string modifyValue = strList[7];
-	condition_ = selectCondition(option2_, compareColumn, compareValue);
 
 	vector<SearchCond*> searchCond;
 	searchCond.push_back(getOptionSearch(option2_, compareColumn, compareValue));
