@@ -119,8 +119,8 @@ public:
 		vector<Employee> result;
 		for (auto e : emList_) {
 			if (cond.isMatch(*e)) {
-				result.push_back(*e);
 				searchEnginePtr_->setEmployeeField(e, column, value);
+				result.push_back(*e);
 			}
 		}
 		return result;
