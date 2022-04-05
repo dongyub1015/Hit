@@ -47,6 +47,16 @@ SearchCond* getOptionSearch(string option2, string compareColumn, string compare
 	return new SearchCondStr(searchType, compareValue);
 }
 
+
+int employeeNumToYear(string employeeNum) {
+	int employeeNumYear = stoi(employeeNum.substr(0, 2));
+	if (68 < employeeNumYear && employeeNumYear < 100)
+		employeeNumYear += 1900;
+	else
+		employeeNumYear += 2000;
+	return employeeNumYear;
+}
+
 vector<string> Command::employeeResultToString(vector<Employee*>* employeeResult) {
 	if(employeeResult == nullptr || this->type_=="ADD") return vector<string>();
 
@@ -59,7 +69,8 @@ vector<string> Command::employeeResultToString(vector<Employee*>* employeeResult
 		result.push_back(this->type_ + "," + to_string(employeeResult->size()));
 		return result;
 	}
-	{}// TODO: employeeResult sorting
+
+	sort(employeeResult->begin(), employeeResult->end(), Employee::comp);
 
 	int maxReturnCnt = 5;
 	for (auto e : *employeeResult) {
@@ -153,6 +164,7 @@ vector<Employee*>* ModCommand::runCommand(EmployeeManagement* EM) {
 
 	vector<SearchCond*> searchCond;
 	searchCond.push_back(getOptionSearch(option2_, compareColumn, compareValue));
+
 	SEARCHTYPE searchType = getSearchType(modifyColumn);
 
 	return EM->modifyEmployee(&searchCond, searchType, modifyValue);
