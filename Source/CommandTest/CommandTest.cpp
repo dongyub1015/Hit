@@ -156,9 +156,6 @@ TEST_F(CommandTest, ModAndDeleteTest) {
 }
 TEST_F(CommandTest, SortResultTest ) {
 
-	EM = new EmployeeManagement();
-	command = new Command();
-
 	command->makeResult(EM, "ADD, , , ,15123099,VXIHXOTH JHOP,CL3,010-3112-2609,19771211,ADV");
 	command->makeResult(EM, "ADD, , , ,17112609,FB NTAWR,CL4,010-5645-6122,19861203,PRO");
 	command->makeResult(EM, "ADD, , , ,18115040,TTETHU HBO,CL3,010-4581-2050,20080718,ADV");
@@ -185,6 +182,7 @@ TEST_F(CommandTest, SortResultTest ) {
 	command->makeResult(EM, "DEL, , , ,employeeNum,18115040");
 	command->makeResult(EM, "DEL,-p,-l, ,name,MPOSXU");
 
+	ASSERT_EQ(resultReal.size(), resultExpected.size());
 	for (auto stringLine : command->makeResult(EM, "SCH,-p, , ,certi,PRO")) {
 		resultReal.push_back(stringLine);
 	}
@@ -195,4 +193,21 @@ TEST_F(CommandTest, SortResultTest ) {
 	resultExpected.push_back("SCH,08123556,WN XV,CL1,010-7986-5047,20100614,PRO");
 	
 	EXPECT_EQ(resultReal, resultExpected);
+}
+
+
+TEST_F(CommandTest, ModReturnTest) {
+	for (auto stringLine : command->makeResult(EM, "MOD,-p, , ,birthday,19640910,birthday,20050520")) {
+		resultReal.push_back(stringLine);
+	}
+	resultExpected.push_back("MOD,09129568,SLALH HMEFFEU,CL2,010-7260-1258,19640910,PRO");
+	resultExpected.push_back("MOD,12002541,ALWPW HMEFFEU,CL3,010-1522-7258,19640910,ADV");
+	resultExpected.push_back("MOD,19129568,SRERLALH HMEF,CL2,010-7260-9521,19640910,PRO");
+	resultExpected.push_back("MOD,20123566,SRERL ALHHMEF,CL2,010-1258-5486,19640910,PRO");
+
+	ASSERT_EQ(resultReal.size(), resultExpected.size());
+	for (int i = 0; i < resultReal.size(); i++)
+	{
+		EXPECT_EQ(resultReal[i], resultExpected[i]);
+	}
 }

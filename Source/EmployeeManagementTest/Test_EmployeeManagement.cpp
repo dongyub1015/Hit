@@ -166,7 +166,7 @@ TEST_F(EmployeeManagementTest, ScenarioTest_101) {
 	ASSERT_EQ((*matchingList)[0]->getEmployeeNum(), "1") << "1th Employee's employeeNum";
 	ASSERT_EQ((*matchingList)[0]->getName(), "em1") << "1th Employee's Name";
 	ASSERT_EQ((*matchingList)[0]->getCL(), "CL1") << "1th Employee's CL";
-	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-1234-1234") << "1th Employee's Phone Number";
+	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-1354-3734") << "1th Employee's Phone Number";
 	ASSERT_EQ((*matchingList)[0]->getBirthday(), "19770312") << "1th Employee's Birth Day";
 	ASSERT_EQ((*matchingList)[0]->getCerti(), "ADV") << "4th Employee's Certi";
 }
@@ -196,7 +196,7 @@ TEST_F(EmployeeManagementTest, ScenarioTest_102) {
 	ASSERT_EQ((*matchingList)[0]->getEmployeeNum(), "3") << "1th Employee's employeeNum";
 	ASSERT_EQ((*matchingList)[0]->getName(), "ddd aa") << "1th Employee's Name";
 	ASSERT_EQ((*matchingList)[0]->getCL(), "CL3") << "1th Employee's CL";
-	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-1234-1234") << "1th Employee's Phone Number";
+	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-3354-3994") << "1th Employee's Phone Number";
 	ASSERT_EQ((*matchingList)[0]->getBirthday(), "20011211") << "1th Employee's Birth Day";
 	ASSERT_EQ((*matchingList)[0]->getCerti(), "PRO") << "4th Employee's Certi";
 }
@@ -226,7 +226,7 @@ TEST_F(EmployeeManagementTest, ScenarioTest_103) {
 	ASSERT_EQ((*matchingList)[0]->getEmployeeNum(), "3") << "1th Employee's employeeNum";
 	ASSERT_EQ((*matchingList)[0]->getName(), "ddd aa") << "1th Employee's Name";
 	ASSERT_EQ((*matchingList)[0]->getCL(), "CL3") << "1th Employee's CL";
-	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-1234-1234") << "1th Employee's Phone Number";
+	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-3354-3994") << "1th Employee's Phone Number";
 	ASSERT_EQ((*matchingList)[0]->getBirthday(), "20011211") << "1th Employee's Birth Day";
 	ASSERT_EQ((*matchingList)[0]->getCerti(), "PRO") << "4th Employee's Certi";
 }
@@ -257,7 +257,7 @@ TEST_F(EmployeeManagementTest, ScenarioTest_104) {
 	ASSERT_EQ((*matchingList)[0]->getEmployeeNum(), "3") << "1th Employee's employeeNum";
 	ASSERT_EQ((*matchingList)[0]->getName(), "ddd aa") << "1th Employee's Name";
 	ASSERT_EQ((*matchingList)[0]->getCL(), "CL3") << "1th Employee's CL";
-	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-1234-1234") << "1th Employee's Phone Number";
+	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-3354-3994") << "1th Employee's Phone Number";
 	ASSERT_EQ((*matchingList)[0]->getBirthday(), "20011211") << "1th Employee's Birth Day";
 	ASSERT_EQ((*matchingList)[0]->getCerti(), "PRO") << "4th Employee's Certi";
 }
@@ -287,7 +287,7 @@ TEST_F(EmployeeManagementTest, ScenarioTest_105) {
 	ASSERT_EQ((*matchingList)[0]->getEmployeeNum(), "3") << "1th Employee's employeeNum";
 	ASSERT_EQ((*matchingList)[0]->getName(), "ddd aa") << "1th Employee's Name";
 	ASSERT_EQ((*matchingList)[0]->getCL(), "CL3") << "1th Employee's CL";
-	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-1234-1234") << "1th Employee's Phone Number";
+	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-3354-3994") << "1th Employee's Phone Number";
 	ASSERT_EQ((*matchingList)[0]->getBirthday(), "20011211") << "1th Employee's Birth Day";
 	ASSERT_EQ((*matchingList)[0]->getCerti(), "PRO") << "4th Employee's Certi";
 }
@@ -317,7 +317,7 @@ TEST_F(EmployeeManagementTest, ScenarioTest_106) {
 	ASSERT_EQ((*matchingList)[0]->getEmployeeNum(), "3") << "1th Employee's employeeNum";
 	ASSERT_EQ((*matchingList)[0]->getName(), "ddd aa") << "1th Employee's Name";
 	ASSERT_EQ((*matchingList)[0]->getCL(), "CL3") << "1th Employee's CL";
-	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-1234-1234") << "1th Employee's Phone Number";
+	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-3354-3994") << "1th Employee's Phone Number";
 	ASSERT_EQ((*matchingList)[0]->getBirthday(), "20011211") << "1th Employee's Birth Day";
 	ASSERT_EQ((*matchingList)[0]->getCerti(), "PRO") << "4th Employee's Certi";
 }
@@ -347,7 +347,7 @@ TEST_F(EmployeeManagementTest, ScenarioTest_107) {
 	ASSERT_EQ((*matchingList)[0]->getEmployeeNum(), "3") << "1th Employee's employeeNum";
 	ASSERT_EQ((*matchingList)[0]->getName(), "ddd aa") << "1th Employee's Name";
 	ASSERT_EQ((*matchingList)[0]->getCL(), "CL3") << "1th Employee's CL";
-	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-1234-1234") << "1th Employee's Phone Number";
+	ASSERT_EQ((*matchingList)[0]->getPhoneNum(), "010-3354-3994") << "1th Employee's Phone Number";
 	ASSERT_EQ((*matchingList)[0]->getBirthday(), "20011211") << "1th Employee's Birth Day";
 	ASSERT_EQ((*matchingList)[0]->getCerti(), "PRO") << "4th Employee's Certi";
 }
