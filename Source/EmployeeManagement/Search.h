@@ -300,13 +300,17 @@ public:
 	virtual vector<Employee*>* doSearch(vector<SearchCond*> *searchCondList, bool findNdel) override {
 		vector<Employee*>* foundList_ = new vector<Employee*>(MAX_EMPLOYEE);
 		int foundList_idx=0;
-		bool pushed;
+		bool pushed= false;
 
 		for (vector<Employee*>::iterator employee = emList_->begin(); employee != (*emList_).end();) {
-			if (doCondMatching(employee, foundList_, searchCondList, foundList_idx)) {
-				employee = emList_->erase(employee);
+			pushed = false;
+			if (doCondMatching(employee, foundList_, searchCondList, foundList_idx)) {				
 				pushed = true;
-			}else{
+			}		
+			if (pushed && findNdel) {
+				employee = emList_->erase(employee);
+			}
+			else {
 				++employee;
 			}
 		}
