@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "../EmployeeManagement/EmployeeManagement.h"
+#include "../EmployeeManagement/OutputBuilder.h"
 
 class EmployeeManagementTest : public ::testing::Test {
 protected:
@@ -439,8 +440,68 @@ TEST_F(EmployeeManagementTest, StressTest_02) {
 
 }
 
+/*
+TITLE : SortTest_01
+PURPOSE:
+	After get command result, sort it for writing output file.
+	testcase without '-p' option 
+*/
+TEST_F(EmployeeManagementTest, SortTest_01) {
+    vector <Employee*>* matchingList;
 
+    EXPECT_EQ(emMgmt->addEmployee("15123099", "em1", "CL2", "010-1354-3734", "19770312", "ADV"), true);
+    EXPECT_EQ(emMgmt->addEmployee("17112609", "aaa dd", "CL2", "010-1354-7094", "19780521", "ADV"), true);
+    EXPECT_EQ(emMgmt->addEmployee("18115040", "ddd aa", "CL2", "010-3354-3994", "20011211", "PRO"), true);
+    EXPECT_EQ(emMgmt->addEmployee("88114052", "rea aga", "CL2", "010-4384-3574", "20040110", "EX"), true);
 
+    vector<SearchCond*> searchCond;
+    SearchCondStr tempCond(SEARCHTYPE::BYEMPLOYEENUM, "1");
+    searchCond.push_back(&tempCond);
+    matchingList = emMgmt->searchEmployee(&searchCond, false);
+    OutputBuilder output("output_20_20_empty.txt");
+    vector<string> vectorStr;
+    vectorStr.push_back("SCH,NONE");
+    ASSERT_EQ(output.resultToString(matchingList, "-p", "SCH"), vectorStr);
+
+    vector<SearchCond*> searchCond2;
+    SearchCondStr tempCond2(SEARCHTYPE::BYCL, "CL2");
+    searchCond2.push_back(&tempCond2);
+    matchingList = emMgmt->searchEmployee(&searchCond2, false);
+    OutputBuilder output2("output_20_20_empty.txt");
+    vectorStr.clear();
+    vectorStr.push_back("SCH,4");
+    ASSERT_EQ(output2.resultToString(matchingList, " ", "SCH"), vectorStr);
+
+}
+
+/*
+TITLE : SortTest_02
+PURPOSE:
+	After get command result, sort it for writing output file.
+	testcase with '-p' option
+*/
+TEST_F(EmployeeManagementTest, SortTest_02) {
+	vector <Employee*>* matchingList;
+
+	EXPECT_EQ(emMgmt->addEmployee("15123099", "em1", "CL2", "010-1354-3734", "19770312", "ADV"), true);
+	EXPECT_EQ(emMgmt->addEmployee("17112609", "aaa dd", "CL2", "010-1354-7094", "19780521", "ADV"), true);
+	EXPECT_EQ(emMgmt->addEmployee("18115040", "ddd aa", "CL2", "010-3354-3994", "20011211", "PRO"), true);
+	EXPECT_EQ(emMgmt->addEmployee("88114052", "rea aga", "CL2", "010-4384-3574", "20040110", "EX"), true);
+
+	vector<SearchCond*> searchCond;
+
+	SearchCondStr tempCond(SEARCHTYPE::BYCL, "CL2");
+	searchCond.push_back(&tempCond);
+	matchingList = emMgmt->searchEmployee(&searchCond, false);
+	OutputBuilder output("output_20_20_empty.txt");
+	vector<string> vectorStr;
+	vectorStr.push_back("SCH,88114052");
+	vectorStr.push_back("SCH,15123099");
+	vectorStr.push_back("SCH,17112609");
+	vectorStr.push_back("SCH,18115040");
+	ASSERT_EQ(output.resultToString(matchingList, "-p", "SCH"), vectorStr);
+
+}
 
 
 
