@@ -116,6 +116,7 @@ int ValidChecker::convertColumnStrToInt(const string& column)
 {
 	if (column == EMPLOYEENUM) return employeeNum;
 	if (column == NAME) return name;
+	if (column == CL) return cl;
 	if (column == PHONENUM) return phoneNum;
 	if (column == BIRTHDAY) return birthday;
 	if (column == CERTI) return certi;
