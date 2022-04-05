@@ -168,6 +168,9 @@ private:
 		case PHONEIDX::THIRD_F:
 			retStr = ref.substr(6, 2);
 			break;
+		case PHONEIDX::NONE:
+			retStr = ref;
+			break;
 		}
 		return retStr;
 	}
