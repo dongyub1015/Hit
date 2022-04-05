@@ -44,7 +44,7 @@ public:
 	vector<string>* spiltStr(string ref, string delim) {
 		vector<string>* spiltStr = new vector<string>(0);
 		string token;
-		int spos = 0, len = delim.size(), epos;
+		size_t spos = 0, len = delim.size(), epos;
 
 		while ((epos = ref.find(delim, spos)) != string::npos) {
 			token = ref.substr(spos, epos - spos);
