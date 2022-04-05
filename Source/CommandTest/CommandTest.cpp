@@ -188,7 +188,7 @@ TEST_F(CommandTest, SortResultTest ) {
 	for (auto stringLine : command->makeResult(EM, "SCH,-p, , ,certi,PRO")) {
 		resultReal.push_back(stringLine);
 	}
-	resultExpected.push_back("SCH, 88114052, NQ LVARW, CL4, 010 - 4528 - 3059, 19911021, PRO");
+	resultExpected.push_back("SCH,88114052,NQ LVARW,CL4,010-4528-3059,19911021,PRO");
 	resultExpected.push_back("SCH,01122329,DN WD,CL4,010-7174-5680,20071117,PRO");
 	resultExpected.push_back("SCH,03113260,HH LTUPF,CL2,010-5798-5383,19791018,PRO");
 	resultExpected.push_back("SCH,05101762,VCUHLE HMU,CL4,010-3988-9289,20030819,PRO");

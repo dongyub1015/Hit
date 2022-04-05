@@ -407,8 +407,6 @@ PURPOSE :
 	See if it handles correctly.
 */
 TEST_F(EmployeeManagementTest, StressTest_01) {
-	Employee* emTemp;
-	vector<Employee*>* emList;
 	for (int i = 0; i < MAX_EMPLOYEE; i++) {
 		emMgmt->addEmployee("1", "em1", "CL1", "010-1354-3734", "19770312", "ADV");
 	}
@@ -425,8 +423,6 @@ PURPOSE :
 */
 TEST_F(EmployeeManagementTest, StressTest_02) {
 	vector <Employee*>* matchingList;
-	Employee* emTemp;
-	vector<Employee*>* emList;
 	for (int i = 0; i < MAX_EMPLOYEE; i++) {
 		emMgmt->addEmployee("1", "em1", "CL1", "010-1354-3734", "19770312", "ADV");
 	}

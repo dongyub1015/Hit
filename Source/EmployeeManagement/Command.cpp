@@ -83,7 +83,7 @@ vector<string> Command::employeeResultToString(vector<Employee*>* employeeResult
 }
 
 vector<string> Command::makeResult(EmployeeManagement* EM, const string& commandStr) {
-
+	vector<string> result;
 	vector<string> strList;
 	validChecker_ = new ValidChecker();
 	strList = validChecker_->parseString(commandStr, ",");
@@ -93,9 +93,12 @@ vector<string> Command::makeResult(EmployeeManagement* EM, const string& command
 	for (auto c : commandList) {
 		if (c->type_ == command_type) {
 			c->setCommandString(commandStr);
-			return c->employeeResultToString(c->runCommand(EM));
+			result = c->employeeResultToString(c->runCommand(EM));
+			break;
 		}
 	}
+
+	return result;
 }
 
 vector<Employee*>* AddCommand::runCommand(EmployeeManagement* EM) {
