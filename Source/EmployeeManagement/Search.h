@@ -133,6 +133,7 @@ public:
 	SearchCondPhonenum(SEARCHTYPE serchType, string refstr) : SearchCond(serchType, refstr) {
 		del_ = "-";
 		fullSearch_ = true;
+		searchIdx_ = PHONEIDX::FIRST_F;
 	}
 	bool setSearchIdx(PHONEIDX idx) {
 		searchIdx_ = idx;
@@ -140,7 +141,7 @@ public:
 		return true;
 	}
 	virtual bool isMatched(string refstr) override {
-		if (fullSearch_) return refstr_ == refstr;
+		if (fullSearch_) return refstr == SearchCond::getReference();
 
 		vector<string>* refStrList = SearchCond::spiltStr(refstr, del_);
 		if (refStrList->size() < 3) {
