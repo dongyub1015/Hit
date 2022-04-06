@@ -30,9 +30,8 @@ bool runAllCommand(const string inputFile, const string outputFile) {
 
 int main(int argc, char* argv[]) {
 
-	//if (argc != 3) exit(1);
-	//runAllCommand(argv[1], argv[2]);
-	runAllCommand("input_20_20_temp.txt", "output_20_20_temp.txt");
+	if (argc != 3) exit(1);
+	runAllCommand(argv[1], argv[2]);
 
 	return 0;
 }
