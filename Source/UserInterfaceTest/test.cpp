@@ -19,17 +19,13 @@ TEST(InputInterpreterTest, ValidFilenameTest) {
     EXPECT_EQ(false, checker.isValidFileName("filename,txt"));
 }
 TEST(InputInterpreterTest, ReadFileTest) {
-    InputInterpreter input1("input_20_20_empty.txt");
+    InputInterpreter input1("../../UserInterfaceTest/input_20_20.txt");
     vector<string> vectorStr;
-    EXPECT_EQ(vectorStr, input1.readFile());
-
-    InputInterpreter input2("input_20_20_temp.txt");
-    vectorStr.push_back("ADD, , , ,15123099,VXIHXOTH JHOP,CL3,010-3112-2609,19771211,ADV");
-    EXPECT_EQ(vectorStr, input2.readFile());
+    EXPECT_GT(input1.readFile().size(), vectorStr.size());
 }
 
 TEST(InputInterpreterTest, CheckInputContentsTest) {
-    InputInterpreter input("input_20_20.txt"); 
+    InputInterpreter input("../../UserInterfaceTest/input_20_20.txt");
     vector<string> vectorStr;
 
     vectorStr.push_back("ADD, , , ,15123099,VXIHXOTH JHOP,CL3,010-3112-2609,19771211,ADV");
@@ -78,13 +74,13 @@ TEST(InputInterpreterTest, CheckInputContentsTest) {
 
 TEST(OutputBuilderTest, WriteFileTest1) {
 
-    OutputBuilder output("output_20_20_empty.txt");
+    OutputBuilder output("../../UserInterfaceTest/output_20_20_empty.txt");
     vector<string> vectorStr;
     EXPECT_EQ(true, output.writeFile(vectorStr));
 }
 
 TEST(OutputBuilderTest, WriteFileTest2) {
-    OutputBuilder output("output_20_20_temp.txt");
+    OutputBuilder output("../../UserInterfaceTest/output_20_20_temp.txt");
     vector<string> vectorStr;
 
     vectorStr.push_back("SCH,02117175,SBILHUT LDEXRI,CL4,010-2814-1699,19950704,ADV");
@@ -92,14 +88,14 @@ TEST(OutputBuilderTest, WriteFileTest2) {
 }
 
 TEST(OutputBuilderTest, WriteFileTest3) {
-    OutputBuilder output("output_20_20_compare.txt");
+    OutputBuilder output("../../UserInterfaceTest/output_20_20_compare.txt");
     vector<string> vectorStrWrite;
 
     vectorStrWrite.push_back("SCH,02117175,SBILHUT LDEXRI,CL4,010-2814-1699,19950704,ADV");
     vectorStrWrite.push_back("MOD,17112609,FB NTAWR,CL4,010-5645-6122,19861203,PRO");
     EXPECT_EQ(true, output.writeFile(vectorStrWrite));
 
-    InputInterpreter input("output_20_20_compare.txt");
+    InputInterpreter input("../../UserInterfaceTest/output_20_20_compare.txt");
     vector<string> vectorStrRead;
     vectorStrRead = input.readFile();
     EXPECT_EQ(vectorStrWrite, vectorStrRead);

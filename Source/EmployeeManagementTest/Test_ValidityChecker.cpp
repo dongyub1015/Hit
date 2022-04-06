@@ -253,7 +253,7 @@ TEST(ModValidChecker, CheckCmdOpt) {
 
 	ASSERT_TRUE(checker->checkValid("MOD,-p, , ,name,FB NTAWR,birthday,20050520"));
 	EXPECT_FALSE(checker->checkValid("DEL,-p,-l, ,name,MPOSXU,birthday,20050520"));
-	EXPECT_FALSE(checker->checkValid("MOD,-p,-l, ,name,MPOSXU,cl,CL3"));
+	EXPECT_TRUE(checker->checkValid("MOD,-p,-l, ,name,MPOSXU,cl,CL3"));
 	ASSERT_FALSE(checker->checkValid("MOD, ,-q, ,employeeNum,18115040"));
 	EXPECT_FALSE(checker->checkValid("MOD, , ,-f ,name,MPOSXU"));
 }

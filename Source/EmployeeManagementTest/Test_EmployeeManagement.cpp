@@ -408,7 +408,7 @@ PURPOSE :
 */
 TEST_F(EmployeeManagementTest, StressTest_01) {
 	for (int i = 0; i < MAX_EMPLOYEE; i++) {
-		emMgmt->addEmployee("1", "em1", "CL1", "010-1354-3734", "19770312", "ADV");
+		emMgmt->addEmployee(to_string(i), "em1", "CL1", "010-1354-3734", "19770312", "ADV");
 	}
 	ASSERT_EQ(emMgmt->emList_.size(), MAX_EMPLOYEE);
 
@@ -424,14 +424,14 @@ PURPOSE :
 TEST_F(EmployeeManagementTest, StressTest_02) {
 	vector <Employee*>* matchingList;
 	for (int i = 0; i < MAX_EMPLOYEE; i++) {
-		emMgmt->addEmployee("1", "em1", "CL1", "010-1354-3734", "19770312", "ADV");
+		emMgmt->addEmployee(to_string(i), "em1", "CL1", "010-1354-3734", "19770312", "ADV");
 	}
 	vector<SearchCond*> searchCond;
 	SearchCondStr tempCond(SEARCHTYPE::BYEMPLOYEENUM, "1");
 	searchCond.push_back(&tempCond);
 	matchingList = emMgmt->searchEmployee(&searchCond, false);
 
-	ASSERT_EQ(matchingList->size(), MAX_EMPLOYEE);
+	ASSERT_EQ(matchingList->size(), 1);
 
 }
 
