@@ -25,6 +25,22 @@ protected:
 
 };
 
+TEST_F(CommandTest, ModBugTest) {
+	command->makeResult(EM, "ADD, , , ,85125741,FBAH RTIJ,CL1,010-8900-1478,19780228,ADV");
+
+	for (auto stringLine : command->makeResult(EM, "MOD,-p, , ,phoneNum,010-8900-1478,certi,PRO")) {
+		resultReal.push_back(stringLine);
+	}
+
+	resultExpected.push_back("MOD,85125741,FBAH RTIJ,CL1,010-8900-1478,19780228,ADV");
+
+	ASSERT_EQ(resultReal.size(), resultExpected.size());
+	for (int i = 0; i < resultReal.size(); i++)
+	{
+		EXPECT_EQ(resultReal[i], resultExpected[i]);
+	}
+}
+
 TEST_F(CommandTest, AddTest) {
 	command->makeResult(EM, "ADD, , , ,19129568,SRERLALH HMEF,CL2,010-7260-9521,19640910,PRO");
 	EXPECT_EQ(EM->emList_.size(), 4);
